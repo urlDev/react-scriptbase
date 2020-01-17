@@ -1,0 +1,10 @@
+.NavTop {
+    font-size: 2em;
+    .navbar {
+        &-brand {
+            img {
+                width: 7em;
+            }
+        }
+    }
+}
