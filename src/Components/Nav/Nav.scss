@@ -1,10 +1,63 @@
+@import "../../index.scss";
 .NavTop {
-    font-size: 2em;
+    font-family: $secondary-font;
+    text-transform: uppercase;
     .navbar {
+        margin: 0 auto;
         &-brand {
             img {
                 width: 7em;
             }
+        }
+        span {
+            font-family: $secondary-font;
+            color: $red;
+            margin-right: 0.5em;
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;   linear-gradient(146deg, rgba(1, 22, 39, 1) 22%, rgba(238, 14, 81, 1) 100%);
+        }
+        // .fas {
+        //     background: $red;
+        // }
+        &-toggler {
+            height: 2em;
+            font-size: 2rem;
+            color: $red;
+            border: none;
+            transition: all 0.5s ease-in-out;
+            &:focus,
+            &:active {
+                outline: none !important;
+            }
+            &:hover {
+                background: rgb(224, 224, 224);
+            }
+        }
+        .form {
+            &-inline {
+                font-size: 2em;
+                width: 50vw;
+                .form-control {
+                    font-size: 1em;
+                    width: 90%;
+                }
+                button {
+                    background: $red;
+                    font-size: 1em;
+                    color: $white;
+                }
+            }
+        }
+        &-nav {
+            margin: 0 auto !important;
+            .nav-link {
+                font-size: 1.5em;
+                color: $blue;
+                font-weight: bold;
+            }
+        }
+        &-collapse {
+            margin: 0 auto;
         }
     }
 }

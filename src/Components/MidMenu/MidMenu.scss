@@ -1,0 +1,25 @@
+@import "../../index.scss";
+.MidMenu {
+    height: 5em;
+    background: $white;
+    color: $blue;
+    margin-top: -5em;
+    z-index: 2;
+    .nav {
+        &-item {
+            a {
+                padding: 0 2em;
+                color: $blue;
+                text-decoration: none;
+                font-size: 2em;
+                font-family: $primary-font;
+                margin-top: 0.7em;
+                transition: all 0.5s ease-in-out;
+                &:hover {
+                    color: $yellow;
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
