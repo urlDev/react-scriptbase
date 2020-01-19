@@ -1,15 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.scss';
-import App from './App';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.scss";
+import App from "./App";
 import { MovieProvider } from "./Context.jsx";
-import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router } from "react-router-dom";
+import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render( 
-<MovieProvider>
-< App / > 
-</MovieProvider>
-, document.getElementById('root'));
+ReactDOM.render(
+  <MovieProvider>
+    <Router>
+      <App />
+    </Router>
+  </MovieProvider>,
+  document.getElementById("root")
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

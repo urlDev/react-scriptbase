@@ -15,11 +15,6 @@ import Slider from "react-slick";
 import "./Hero.scss";
 
 class Hero extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  
   render() {
     
     return (
@@ -30,13 +25,13 @@ class Hero extends Component {
               return (
                 <Carousel.Item key={i.id}>
                   <img
-                    className="d-block w-100"
+                    className=" w-100"
                     src={`https://image.tmdb.org/t/p/original/${i.backdrop_path}`}
                     alt={i.title}
                   />
                   <Carousel.Caption>
                     <h3>{i.title}</h3>
-                    {/* <p>{i.overview}</p> */}
+                    
                   </Carousel.Caption>
                 </Carousel.Item>
               );
@@ -44,13 +39,14 @@ class Hero extends Component {
           }}
         </MovieConsumer>
       </Carousel>
+      
     );
   }
 }
 
 export default Hero;
 {
-  /* <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+  /* <div id="carouselExampleCaptions" className="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -89,3 +85,55 @@ export default Hero;
   </a>
 </div> */
 }
+
+{
+  /* <Carousel className="Hero">
+        <MovieConsumer>
+          {value => {
+            return value.trending.slice(0, 3).map(i => {
+              return (
+                <Carousel.Item key={i.id}>
+                  <img
+                    className="d-block w-100"
+                    src={`https://image.tmdb.org/t/p/original/${i.backdrop_path}`}
+                    alt={i.title}
+                  />
+                  <Carousel.Caption>
+                    <h3>{i.title}</h3>
+                    
+                  </Carousel.Caption>
+                </Carousel.Item>
+              );
+            });
+          }}
+        </MovieConsumer>
+      </Carousel> */
+}
+
+
+{/* 
+
+const settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
+
+<Slider {...settings}>
+        <MovieConsumer>
+          {value => {
+            return value.trending.slice(0, 3).map(item => (
+              <div>
+                <div item={item} >
+                  <img
+                    src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+                    alt=""
+                  />
+                </div>
+              </div>
+            ));
+          }}
+        </MovieConsumer>
+      </Slider> */}

@@ -1,0 +1,30 @@
+@import "../../index.scss";
+.MoviesTop {
+    // overflow-x: scroll;
+    // overflow-y: hidden;
+    // width: 114em;
+    // max-height: 30em;
+    .card {
+        display: inline-block;
+        width: 20em;
+        margin: 1.1em;
+        border: 1px solid $yellow;
+        // border-radius: 1em;
+        img {
+            width: 100%;
+            border: 1px solid $yellow;
+            // border-radius: 1em;
+        }
+        &-title {
+            position: absolute;
+            top: 85%;
+            left: 10%;
+            background: $yellow;
+            width: 3em;
+            height: 3em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 3em;
+        }
+    }
+}

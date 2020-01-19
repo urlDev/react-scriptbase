@@ -8,16 +8,18 @@
     .nav {
         &-item {
             a {
-                padding: 0 2em;
+                // padding: 0 2em;
                 color: $blue;
                 text-decoration: none;
                 font-size: 2em;
                 font-family: $primary-font;
                 margin-top: 0.7em;
                 transition: all 0.5s ease-in-out;
-                &:hover {
+                &:hover,
+                &:active {
                     color: $yellow;
                     font-weight: bold;
+                    text-shadow: 1px 1px $blue;
                 }
             }
         }
