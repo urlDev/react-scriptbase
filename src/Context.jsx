@@ -12,20 +12,37 @@ class MovieProvider extends Component {
       trending: [],
       popular: [],
       now: [],
-      coming:[],
-      top:[]
+      coming: [],
+      top: [],
+      details: "",
+      genres: [],
+      cast:[]
     };
   }
 
-    componentDidMount() {
-        this.getTrending();
-        this.getPopular();
-        this.getNow();
-        this.getComing();
-        this.getTop();
-    }
+  componentDidMount() {
+    this.getTrending();
+    this.getPopular();
+    // this.cleanState();
+    // this.getNow();
+    // this.getComing();
+    // this.getTop();
+    this.getDetails(this.state.details.id);
+    this.getCast();
+  }
+
+//cleans the states for movie lists so they wouldnt stack up
+  cleanState = () => {
+    this.setState({
+      popular: [],
+      now: [],
+      coming: [],
+      top: []
+    })
+  }
 
   getTrending = () => {
+    
     axios
       .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${TMDB_KEY}`)
       .then(response => {
@@ -41,8 +58,11 @@ class MovieProvider extends Component {
   };
 
   getPopular = () => {
+    this.cleanState();
     axios
-      .get(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=en-US&page=1`)
+      .get(
+        `https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -53,12 +73,15 @@ class MovieProvider extends Component {
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
-    getNow = () => {
+  getNow = () => {
+    this.cleanState();
     axios
-      .get(`
-https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_KEY}&language=en-US&page=1`)
+      .get(
+        `
+https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -69,12 +92,16 @@ https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_KEY}&language=en-U
       .catch(error => {
         console.log(error);
       });
-  }
+      console.log("worked")
+  };
 
   getComing = () => {
+    this.cleanState();
     axios
-      .get(`
-https://api.themoviedb.org/3/movie/upcoming?api_key=${TMDB_KEY}&language=en-US&page=1`)
+      .get(
+        `
+https://api.themoviedb.org/3/movie/upcoming?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -88,9 +115,12 @@ https://api.themoviedb.org/3/movie/upcoming?api_key=${TMDB_KEY}&language=en-US&p
   };
 
   getTop = () => {
+    this.cleanState();
     axios
-      .get(`
-https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&page=1`)
+      .get(
+        `
+https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -103,15 +133,48 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       });
   };
 
-//for checking if a link is active
+  getDetails = id => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/419704?api_key=${TMDB_KEY}&language=en-US`
+      )
+      .then(response => {
+        const apiResponse = response.data;
+        this.setState({
+          details: apiResponse,
+          genres: apiResponse.genres
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+  getCast = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/419704/credits?api_key=${TMDB_KEY}&language=en-US`
+      )
+      .then(response => {
+        const apiResponse = response.data;
+        this.setState({
+          cast: apiResponse.cast
+        });
+        // console.log(apiResponse.cast);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
-//   checkActive = (match, location) => {
-//     //some additional logic to verify you are in the home URI
-//     if(!location) return false;
-//     const {pathname} = location;
-//     console.log(pathname);
-//     return pathname === "/";
-// }
+  //for checking if a link is active
+
+  //   checkActive = (match, location) => {
+  //     //some additional logic to verify you are in the home URI
+  //     if(!location) return false;
+  //     const {pathname} = location;
+  //     console.log(pathname);
+  //     return pathname === "/";
+  // }
 
   render() {
     return (
@@ -124,7 +187,9 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           getNow: this.getNow,
           getComing: this.getComing,
           getTop: this.getTop,
-          checkActive: this.checkActive
+          checkActive: this.checkActive,
+          getDetails: this.getDetails,
+          getCast: this.getCast
         }}
       >
         {this.props.children}

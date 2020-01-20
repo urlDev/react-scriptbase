@@ -22,12 +22,12 @@ class MoviesTop extends Component {
   
   render() {
     return (
-      <Container className="MoviesTop mt-3">
+      <Container className="MoviesTop mt-3 ">
         <Row>
           <Col>
             <MovieConsumer>
               {value => {
-                return value.top.slice(0, 5).map(i => {
+                return value.top.slice(0, 10).map(i => {
                   return (
                     <div className="card text-white" key={i.id}>
                       <img src={`https://image.tmdb.org/t/p/original/${i.poster_path}`} className="card-img" alt={i.title} />

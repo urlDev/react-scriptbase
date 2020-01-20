@@ -10,22 +10,34 @@ import {
   Carousel
 } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
-import Slider from "react-slick";
 
 import "./Hero.scss";
 
 class Hero extends Component {
   render() {
-    
     return (
-      <Carousel className="Hero">
-        <MovieConsumer>
-          {value => {
-            return value.trending.slice(0, 3).map(i => {
+      <div
+        id="carouselExampleCaptions"
+        className="carousel slide Hero"
+        data-ride="carousel"
+      >
+        <ol className="carousel-indicators">
+          <li
+            data-target="#carouselExampleCaptions"
+            data-slide-to="0"
+            className="active"
+          ></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        </ol>
+        <div className="carousel-inner">
+          <MovieConsumer>
+            {value => {
+              return value.trending.slice(0, 3).map(i => {
               return (
                 <Carousel.Item key={i.id}>
                   <img
-                    className=" w-100"
+                    className="d-block w-100"
                     src={`https://image.tmdb.org/t/p/original/${i.backdrop_path}`}
                     alt={i.title}
                   />
@@ -36,10 +48,34 @@ class Hero extends Component {
                 </Carousel.Item>
               );
             });
-          }}
-        </MovieConsumer>
-      </Carousel>
-      
+            }}
+          </MovieConsumer>
+        </div>
+        <a
+          className="carousel-control-prev"
+          href="#carouselExampleCaptions"
+          role="button"
+          data-slide="prev"
+        >
+          <span
+            className="carousel-control-prev-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="sr-only">Previous</span>
+        </a>
+        <a
+          className="carousel-control-next"
+          href="#carouselExampleCaptions"
+          role="button"
+          data-slide="next"
+        >
+          <span
+            className="carousel-control-next-icon"
+            aria-hidden="true"
+          ></span>
+          <span className="sr-only">Next</span>
+        </a>
+      </div>
     );
   }
 }
@@ -110,8 +146,8 @@ export default Hero;
       </Carousel> */
 }
 
-
-{/* 
+{
+  /* 
 
 const settings = {
       dots: true,
@@ -136,4 +172,5 @@ const settings = {
             ));
           }}
         </MovieConsumer>
-      </Slider> */}
+      </Slider> */
+}

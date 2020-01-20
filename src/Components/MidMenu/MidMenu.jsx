@@ -26,22 +26,22 @@ class MidMenu extends Component {
             return (
               <Nav className="justify-content-center" activeKey="/home">
                 <Nav.Item>
-                  <Link to="/popular" className="mr-5 nav-link " >
+                  <Link to="/" className="mr-5 nav-link " onClick={value.getPopular}>
                     POPULAR
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/now" className="ml-5 mr-5 nav-link">
+                  <Link to="/" className="ml-5 mr-5 nav-link" onClick={value.getNow}>
                     NOW PLAYING
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/coming" className="ml-5 mr-5 nav-link">
+                  <Link to="/" className="ml-5 mr-5 nav-link" onClick={value.getComing}>
                     COMING SOON
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/top" className="ml-5 nav-link">
+                  <Link to="/" className="ml-5 nav-link" onClick={value.getTop}>
                     TOP RATED
                   </Link>
                 </Nav.Item>

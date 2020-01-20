@@ -2,11 +2,12 @@
 .NavTop {
     font-family: $secondary-font;
     text-transform: uppercase;
+    background: $white;
     .navbar {
         margin: 0 auto;
         &-brand {
             img {
-                width: 7em;
+                width: 6em;
             }
         }
         span {
@@ -17,7 +18,7 @@
             // -webkit-text-fill-color: transparent;   linear-gradient(146deg, rgba(1, 22, 39, 1) 22%, rgba(238, 14, 81, 1) 100%);
         }
         // .fas {
-        //     background: $red;
+        //     background: $white;
         // }
         &-toggler {
             height: 2em;
@@ -33,18 +34,23 @@
                 background: rgb(224, 224, 224);
             }
         }
-        .form {
-            &-inline {
-                font-size: 2em;
-                width: 50vw;
-                .form-control {
-                    font-size: 1em;
-                    width: 90%;
-                }
-                button {
-                    background: $red;
-                    font-size: 1em;
-                    color: $white;
+        .container {
+            // border: 1px solid $white;
+            // height: 100%;
+            .form {
+                &-inline {
+                    font-size: 2em;
+                    width: 100%;
+                    .form-control {
+                        font-size: 1em;
+                        width: calc(100% - 2em);
+                    }
+                    button {
+                        background: $red;
+                        border: none;
+                        font-size: 1em;
+                        color: $white;
+                    }
                 }
             }
         }

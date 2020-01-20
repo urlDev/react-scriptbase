@@ -1,0 +1,107 @@
+@import "../../index.scss";
+.Details {
+    .row {
+        .col .firstCol {
+            img {}
+            &:after {
+                content: '';
+                background: #A0616A;
+                height: 0.5vw;
+                width: 17.7vw;
+                display: block;
+                transform: translateY(20vw);
+            }
+        }
+        .col {
+            .row {
+                h1 {
+                    letter-spacing: 0.2em;
+                    font-family: $primary-font;
+                    font-size: 5em;
+                    color: $yellow;
+                    text-transform: uppercase;
+                    text-shadow: 2px 2px $blue;
+                    font-weight: bold;
+                    span {
+                        font-size: 0.5em;
+                    }
+                }
+            }
+            .row {
+                p {
+                    font-size: 2em;
+                    font-family: $third-font;
+                    text-align: left;
+                    color: $blue;
+                }
+                .col {
+                    font-family: $secondary-font;
+                    h2 {
+                        font-weight: bold;
+                        color: $blue;
+                    }
+                }
+            }
+            .row {
+                .col {
+                    h1 {
+                        margin: 0 auto;
+                        font-size: 1.5em;
+                        color: $white;
+                        background: $yellow;
+                        width: 3em;
+                        height: 3em;
+                        border-radius: 50%;
+                        line-height: 3em;
+                    }
+                }
+                .col {
+                    h3 {
+                        font-family: $primary-font;
+                        margin: 0 auto;
+                        font-size: 1.5em;
+                        color: $white;
+                        background: $yellow;
+                        width: 3em;
+                        height: 3em;
+                        border-radius: 50%;
+                        line-height: 3em;
+                        text-shadow: 2px 2px $blue;
+                        font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+    .row {
+        font-family: $secondary-font;
+        color: $blue;
+        .col {
+            p {
+                font-size: 2em;
+            }
+        }
+        .col {}
+    }
+    .row {
+        font-family: $secondary-font;
+        .castTitle {
+            color: $yellow;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            text-align: left;
+            text-shadow: 2px 2px $blue;
+        }
+        .castImg {
+            display: block;
+            margin: 7em;
+            width: 15em;
+            height: 15em;
+            border-radius: 15em;
+        }
+    }
+    .leftTitle {
+        font-weight: bold;
+    }
+}
