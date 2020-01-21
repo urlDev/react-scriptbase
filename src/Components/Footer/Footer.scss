@@ -1,0 +1,10 @@
+@import "../../index.scss";
+.Footer {
+    height: 20vh;
+    background: $yellow;
+    img {
+        width: 7em;
+        margin-right: -80vw;
+        border-radius: 20%;
+    }
+}

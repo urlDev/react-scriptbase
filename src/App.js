@@ -3,11 +3,8 @@ import NavTop from "./Components/Nav/NavTop.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Hero from "./Components/Hero/Hero.jsx"
 import MidMenu from "./Components/MidMenu/MidMenu";
-import MoviesPopular from "./Components/MoviesPopular/MoviesPopular.jsx";
-import MoviesNow from "./Components/MoviesNow/MoviesNow.jsx";
-import MoviesComing from "./Components/MoviesComing/MoviesComing.jsx";
-import MoviesTop from "./Components//MoviesTop/MoviesTop";
 import MovieDetails from "./Components/MovieDetails/MovieDetails.jsx";
+import Footer from "./Components/Footer/Footer.jsx"
 
 import { Switch, Route, Router } from "react-router-dom";
 
@@ -27,6 +24,7 @@ function App() {
         <Route path="/top" component={MoviesTop} /> */}
         <Route path="/:id" component={MovieDetails} />
       </Switch>
+      {/* <Footer/> */}
     </div>
   );
 }

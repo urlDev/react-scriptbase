@@ -16,7 +16,10 @@ class MovieProvider extends Component {
       top: [],
       details: "",
       genres: [],
-      cast:[]
+      cast: [],
+      id: "",
+      companies: [],
+      countries: []
     };
   }
 
@@ -29,20 +32,20 @@ class MovieProvider extends Component {
     // this.getTop();
     this.getDetails(this.state.details.id);
     this.getCast();
+    this.handleClick();
   }
 
-//cleans the states for movie lists so they wouldnt stack up
+  //cleans the states for movie lists so they wouldnt stack up
   cleanState = () => {
     this.setState({
       popular: [],
       now: [],
       coming: [],
       top: []
-    })
-  }
+    });
+  };
 
   getTrending = () => {
-    
     axios
       .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${TMDB_KEY}`)
       .then(response => {
@@ -92,7 +95,7 @@ https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_KEY}&language=en-U
       .catch(error => {
         console.log(error);
       });
-      console.log("worked")
+    console.log("worked");
   };
 
   getComing = () => {
@@ -136,13 +139,16 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   getDetails = id => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/419704?api_key=${TMDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${this.state.id}?api_key=${TMDB_KEY}&language=en-US`
       )
       .then(response => {
         const apiResponse = response.data;
+        console.log(this.state.id);
         this.setState({
           details: apiResponse,
-          genres: apiResponse.genres
+          genres: apiResponse.genres,
+          companies: apiResponse.production_companies,
+          countries: apiResponse.production_countries
         });
       })
       .catch(error => {
@@ -152,7 +158,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   getCast = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/419704/credits?api_key=${TMDB_KEY}&language=en-US`
+        `https://api.themoviedb.org/3/movie/${this.state.id}/credits?api_key=${TMDB_KEY}&language=en-US`
       )
       .then(response => {
         const apiResponse = response.data;
@@ -164,6 +170,24 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .catch(error => {
         console.log(error);
       });
+  };
+  //this will get the id of clicked element and set the id state with id it got from the element
+  //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
+  handleClick = id => {
+    console.log(id);
+    this.setState(
+      {
+        id: id
+      },
+  // how to put two callback functions within setState
+  // https://stackoverflow.com/questions/53788156/passing-multiple-functions-as-callback-in-setstate
+      () => {
+        this.getDetails();
+        this.getCast()
+      }
+    );
+
+    
   };
 
   //for checking if a link is active
@@ -189,7 +213,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           getTop: this.getTop,
           checkActive: this.checkActive,
           getDetails: this.getDetails,
-          getCast: this.getCast
+          getCast: this.getCast,
+          handleClick: this.handleClick
         }}
       >
         {this.props.children}

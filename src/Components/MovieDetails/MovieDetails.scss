@@ -1,15 +1,13 @@
 @import "../../index.scss";
 .Details {
+    .firstImg {
+        height: 80vh;
+        width: 100%;
+    }
     .row {
-        .col .firstCol {
-            img {}
-            &:after {
-                content: '';
-                background: #A0616A;
-                height: 0.5vw;
-                width: 17.7vw;
-                display: block;
-                transform: translateY(20vw);
+        .col {
+            img {
+                width: 30em;
             }
         }
         .col {
@@ -93,12 +91,39 @@
             text-align: left;
             text-shadow: 2px 2px $blue;
         }
-        .castImg {
-            display: block;
-            margin: 7em;
-            width: 15em;
-            height: 15em;
-            border-radius: 15em;
+        .card {
+            border: 1px solid $yellow;
+            // width: 15em;
+            &-img-top {
+                // // display: inline-block;
+                // width: 10em;
+                // height: 10em;
+                // border-radius: 10em;
+                filter: grayscale(100%);
+            }
+            &-body {
+                background: $white;
+                padding: 0;
+                .card-title {
+                    margin-top: 0.5em;
+                    font-family: $secondary-font;
+                    font-size: 2em;
+                    color: $red;
+                    text-shadow: 1px 1px $blue;
+                }
+                .card-text {
+                    font-family: $third-font;
+                    font-size: 1.5em;
+                    color: $blue;
+                    margin-bottom: 0.5em;
+                }
+            }
+            transition: all 0.3s linear;
+            // border: 1px solid $yellow;
+            // border-radius: 1em;
+            &:hover {
+                box-shadow: 0 0.2px 0.9px rgba(0, 0, 0, 0.055), 0 0.6px 2.2px rgba(0, 0, 0, 0.112), 0 1.1px 4.1px rgba(0, 0, 0, 0.173), 0 2px 7.4px rgba(0, 0, 0, 0.245), 0 3.8px 13.8px rgba(0, 0, 0, 0.35), 0 9px 33px rgba(0, 0, 0, 0.54);
+            }
         }
     }
     .leftTitle {
