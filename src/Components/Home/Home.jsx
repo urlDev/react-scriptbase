@@ -13,10 +13,9 @@ import "./Home.scss";
 class Home extends Component {
   render() {
     return (
-      <div>
+      <div className="Home">
         <Hero />
         <MidMenu />
-
         <MoviesPopular />
         <MoviesNow />
         <MoviesComing />

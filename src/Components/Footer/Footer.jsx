@@ -1,4 +1,16 @@
 import React, { Component } from "react";
+import {
+  Navbar,
+  Nav,
+  Image,
+  Container,
+  Form,
+  FormControl,
+  Button,
+  NavDropdown,
+  Row,
+  Col
+} from "react-bootstrap";
 
 import "./Footer.scss";
 
@@ -10,8 +22,16 @@ class Footer extends Component {
   render() {
     return (
       <div className="Footer">
-        <h1>ScriptBase</h1>
-        <img src={require("../../stormtrooper.png")} alt="" />
+        <Container>
+          <Row>
+            <Col className="mt-5 p-0">
+            <img src={require("../../logo_transparent.png")} className="float-left mr-3" alt=""/>
+            {/* <h1>ScriptBase</h1> */}
+            </Col>
+            <Col>
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   }

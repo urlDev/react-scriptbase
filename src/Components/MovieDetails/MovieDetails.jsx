@@ -13,14 +13,27 @@ import {
   Card
 } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
+import Swiper from "react-id-swiper";
+import { Link } from "react-router-dom";
 
+import "swiper/swiper.scss";
 import "./MovieDetails.scss";
+
+const params = {
+  slidesPerView: 3,
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+};
 
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
+
   render() {
     return (
       <MovieConsumer>
@@ -85,35 +98,46 @@ class MovieDetails extends Component {
                   <Col className="p-0 text-left ml-3 ">
                     <p>
                       <span className="leftTitle">Genre:</span>{" "}
-                      {value.genres.map(genre => genre.name).join(",    ")}{" "}
+                      {value.genres.map(genre => genre.name).join(", ")}{" "}
                     </p>
                     <p>
-                    {/* using array and string methods like this, inside a ternary operator and string interpolator */}
+                      {/* using array and string methods like this, inside a ternary operator and string interpolator */}
                       <span className="leftTitle">Release Date: </span>{" "}
-                      {release_date ? `${release_date.split("-").reverse().join("-")}` : "Release Date Unknown"}
+                      {release_date
+                        ? `${release_date
+                            .split("-")
+                            .reverse()
+                            .join("-")}`
+                        : "Release Date Unknown"}
                     </p>
                     <p>
-                      <span className="leftTitle">Budget: </span> {budget > 0 ? `${budget.toLocaleString()}$` : "Budget Unknown"}
-                    
+                      <span className="leftTitle">Budget: </span>{" "}
+                      {budget > 0
+                        ? `${budget.toLocaleString()}$`
+                        : "Budget Unknown"}
                     </p>
                     <p>
                       <span className="leftTitle">Revenue: </span>{" "}
-                      {revenue > 0 ? `${revenue.toLocaleString()}$` : "Not Estimated"}
+                      {revenue > 0
+                        ? `${revenue.toLocaleString()}$`
+                        : "Not Estimated"}
                     </p>
                   </Col>
                   <Col className="text-left">
                     <p>
-                      <span className="leftTitle">Production Companies:</span>
+                      <span className="leftTitle">Production Companies: </span>
                       {/* couldnt use array methods here so i made them as states and then used array methods */}
-                      {value.companies.map(company => company.name).join(",    ")}
+                      {value.companies.map(company => company.name).join(", ")}
                     </p>
                     <p>
                       <span className="leftTitle">Production Countries: </span>
-                      {value.countries.map(country => country.name).join(",    ")}
+                      {value.countries
+                        .map(country => country.name)
+                        .join(",    ")}
                     </p>
                     <p>
                       <span className="leftTitle">Tagline: </span>{" "}
-                      {tagline ? `${tagline}` : `No Tagline Found` }
+                      {tagline ? `${tagline}` : `No Tagline Found`}
                     </p>
                     <p>
                       <span className="leftTitle">Runtime: </span> {runtime}{" "}
@@ -126,7 +150,11 @@ class MovieDetails extends Component {
 
                   {value.cast.slice(0, 12).map(i => {
                     return (
-                      <Card style={{ width: "18em" }} className="ml-3 mb-5">
+                      <Card
+                        style={{ width: "18em" }}
+                        className="ml-3 mb-5"
+                        key={i.id}
+                      >
                         <Card.Img
                           variant="top"
                           src={`https://image.tmdb.org/t/p/original/${i.profile_path}`}
@@ -140,6 +168,44 @@ class MovieDetails extends Component {
                   })}
                 </Row>
               </Container>
+             
+              <Container className=" p-0">
+                <Row>
+                  <h1 className="similarTitle ml-3">Similar Movies</h1>
+                </Row>
+              </Container>
+              <div className="similar">
+                <Swiper {...params}>
+                  {value.similar.slice(0, 10).map(movie => {
+                    return (
+                      <Link to={`${movie.id}`}
+                        style={{ width: "15em" }}
+                        className="card ml-3"
+                        key={movie.id}
+                         onClick={() => value.handleClick(movie.id)}
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                        />
+                        <Card.Body>
+                          {/* <Card.Title>{movie.title}</Card.Title> */}
+                          {/* <Card.Text>as {i.character}</Card.Text> */}
+                        </Card.Body>
+                      </Link>
+                    );
+                  })}
+                </Swiper>
+              </div>
+              <Swiper className="reviews" {...params}>
+                {value.reviews.slice(0, 5).map(review => {
+                  return (
+                    <div key={review.id}>
+                      {/* <h1>{review.author}</h1> */}
+                    </div>
+                  );
+                })}
+              </Swiper>
             </div>
           );
         }}

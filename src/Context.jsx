@@ -19,7 +19,9 @@ class MovieProvider extends Component {
       cast: [],
       id: "",
       companies: [],
-      countries: []
+      countries: [],
+      similar: [],
+      reviews: []
     };
   }
 
@@ -30,8 +32,8 @@ class MovieProvider extends Component {
     // this.getNow();
     // this.getComing();
     // this.getTop();
-    this.getDetails(this.state.details.id);
-    this.getCast();
+    // this.getDetails();
+    // this.getCast();
     this.handleClick();
   }
 
@@ -136,7 +138,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       });
   };
 
-  getDetails = id => {
+  getDetails = () => {
     axios
       .get(
         `https://api.themoviedb.org/3/movie/${this.state.id}?api_key=${TMDB_KEY}&language=en-US`
@@ -171,10 +173,46 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         console.log(error);
       });
   };
+
+  getSimilar = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${this.state.id}/similar?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
+      .then(response => {
+        const apiResponse = response.data;
+        this.setState({
+          similar: apiResponse.results
+        });
+        // console.log(apiResponse.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  getReviews = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${this.state.id}/reviews?api_key=${TMDB_KEY}&language=en-US&page=1`
+      )
+      .then(response => {
+        const apiResponse = response.data;
+        this.setState({
+          reviews: apiResponse.results
+        });
+        // console.log(apiResponse.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
   handleClick = id => {
-    console.log(id);
+    // console.log(id);
     this.setState(
       {
         id: id
@@ -183,7 +221,9 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   // https://stackoverflow.com/questions/53788156/passing-multiple-functions-as-callback-in-setstate
       () => {
         this.getDetails();
-        this.getCast()
+        this.getCast();
+        this.getSimilar();
+        this.getReviews();
       }
     );
 
@@ -212,8 +252,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           getComing: this.getComing,
           getTop: this.getTop,
           checkActive: this.checkActive,
-          getDetails: this.getDetails,
-          getCast: this.getCast,
+          // getDetails: this.getDetails,
+          // getCast: this.getCast,
           handleClick: this.handleClick
         }}
       >

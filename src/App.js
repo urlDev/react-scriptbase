@@ -24,7 +24,7 @@ function App() {
         <Route path="/top" component={MoviesTop} /> */}
         <Route path="/:id" component={MovieDetails} />
       </Switch>
-      {/* <Footer/> */}
+      <Footer/>
     </div>
   );
 }

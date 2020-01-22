@@ -10,71 +10,44 @@ import {
   Carousel
 } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
+import Swiper from "react-id-swiper";
 
 import "./Hero.scss";
+import "swiper/swiper.scss";
+
+const params = {
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+    
+  }
+};
 
 class Hero extends Component {
   render() {
     return (
-      <div
-        id="carouselExampleCaptions"
-        className="carousel slide Hero"
-        data-ride="carousel"
-      >
-        <ol className="carousel-indicators">
-          <li
-            data-target="#carouselExampleCaptions"
-            data-slide-to="0"
-            className="active"
-          ></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-          <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
-        </ol>
-        <div className="carousel-inner">
-          <MovieConsumer>
-            {value => {
-              return value.trending.slice(0, 3).map(i => {
-              return (
-                <Carousel.Item key={i.id}>
-                  <img
-                    className="d-block w-100"
-                    src={`https://image.tmdb.org/t/p/original/${i.backdrop_path}`}
-                    alt={i.title}
-                  />
-                  <Carousel.Caption>
-                    <h3>{i.title}</h3>
-                    
-                  </Carousel.Caption>
-                </Carousel.Item>
-              );
-            });
-            }}
-          </MovieConsumer>
-        </div>
-        <a
-          className="carousel-control-prev"
-          href="#carouselExampleCaptions"
-          role="button"
-          data-slide="prev"
-        >
-          <span
-            className="carousel-control-prev-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Previous</span>
-        </a>
-        <a
-          className="carousel-control-next"
-          href="#carouselExampleCaptions"
-          role="button"
-          data-slide="next"
-        >
-          <span
-            className="carousel-control-next-icon"
-            aria-hidden="true"
-          ></span>
-          <span className="sr-only">Next</span>
-        </a>
+      <div className=" Hero">
+        <MovieConsumer>
+          {value => {
+            return (
+                <Swiper {...params}>
+                  {value.trending.slice(0, 3).map(movie => {
+                    return (
+                      <div style={{ width: "100%"}}>
+                        <img
+                          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                          alt={movie.title}
+                        />
+                        <h1 className="carousel-caption">
+                        {movie.title}
+                        </h1>
+                      </div>
+                    );
+                  })}
+                </Swiper>
+            );
+          }}
+        </MovieConsumer>
       </div>
     );
   }
