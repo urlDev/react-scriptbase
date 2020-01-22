@@ -20,14 +20,20 @@ import "swiper/swiper.scss";
 import "./MovieDetails.scss";
 
 const params = {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true
-  }
-};
-
+      slidesPerView: 3,
+      spaceBetween: 30,
+      slidesPerGroup: 3,
+      loop: true,
+      loopFillGroupWithBlank: false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      }
+    }
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
@@ -168,7 +174,7 @@ class MovieDetails extends Component {
                   })}
                 </Row>
               </Container>
-             
+
               <Container className=" p-0">
                 <Row>
                   <h1 className="similarTitle ml-3">Similar Movies</h1>
@@ -178,11 +184,12 @@ class MovieDetails extends Component {
                 <Swiper {...params}>
                   {value.similar.slice(0, 10).map(movie => {
                     return (
-                      <Link to={`${movie.id}`}
+                      <Link
+                        to={`${movie.id}`}
                         style={{ width: "15em" }}
                         className="card ml-3"
                         key={movie.id}
-                         onClick={() => value.handleClick(movie.id)}
+                        onClick={() => value.handleClick(movie.id)}
                       >
                         <Card.Img
                           variant="top"
@@ -200,9 +207,7 @@ class MovieDetails extends Component {
               <Swiper className="reviews" {...params}>
                 {value.reviews.slice(0, 5).map(review => {
                   return (
-                    <div key={review.id}>
-                      {/* <h1>{review.author}</h1> */}
-                    </div>
+                    <div key={review.id}>{/* <h1>{review.author}</h1> */}</div>
                   );
                 })}
               </Swiper>

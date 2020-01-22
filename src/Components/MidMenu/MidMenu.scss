@@ -4,7 +4,10 @@
     background: $white;
     color: $blue;
     margin-top: -5em;
-    z-index: 10;
+    z-index: 1000;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     .nav {
         &-item {
             a {

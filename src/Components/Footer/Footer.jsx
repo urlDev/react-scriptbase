@@ -11,6 +11,7 @@ import {
   Row,
   Col
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 import "./Footer.scss";
 
@@ -25,7 +26,10 @@ class Footer extends Component {
         <Container>
           <Row>
             <Col className="mt-5 p-0">
+            <Link to="/">
             <img src={require("../../logo_transparent.png")} className="float-left mr-3" alt=""/>
+            </Link>
+            
             {/* <h1>ScriptBase</h1> */}
             </Col>
             <Col>

@@ -33,7 +33,7 @@ class Hero extends Component {
           {value => {
             return (
               <Swiper {...params}>
-                {value.trending.slice(0, 5).map(movie => {
+                {value.trending.map(movie => {
                   return (  
                     <Link
                       to={`${movie.id}`}

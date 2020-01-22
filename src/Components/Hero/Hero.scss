@@ -1,30 +1,37 @@
 @import "../../index.scss";
 .Hero {
+    position: relative;
     .swiper-container {
-        z-index: -1;
-        img {
-            height: 80vh;
-            width: 100%;
-        }
-        .carousel-caption {
-            z-index: 3;
-            text-align: left;
-            margin-bottom: 1.5em;
-            margin-left: -1.5em;
-            // position: absolute;
-            // top: 85%;
-            // left: 20%;
-            // transform: translate(-45%, -20%);
-            // width: 20em;
-            // height: 4em;
-            // background: $blue;
-            font-family: $primary-font;
-            // font-size: 5em;
-            text-shadow: 3px 3px $blue;
-            font-weight: bold;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: $white;
+        z-index: 0;
+        .swiper-wrapper {
+            .swiper-slide {
+                cursor: pointer;
+                // position: absolute;
+                img {
+                    height: 80vh;
+                    width: 100%;
+                }
+                .carousel-caption {
+                    z-index: 3;
+                    text-align: left;
+                    margin-bottom: 1.5em;
+                    margin-left: -1.5em;
+                    // position: absolute;
+                    // top: 85%;
+                    // left: 20%;
+                    // transform: translate(-45%, -20%);
+                    // width: 20em;
+                    // height: 4em;
+                    // background: $blue;
+                    font-family: $primary-font;
+                    // font-size: 5em;
+                    text-shadow: 3px 3px $blue;
+                    font-weight: bold;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    color: $white;
+                }
+            }
         }
         // .swiper-button-next,
         // .swiper-button-prev,
