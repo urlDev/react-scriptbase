@@ -1,26 +1,28 @@
 import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  Image,
-  Container,
-  Form,
-  FormControl,
-  Button,
-  Carousel
-} from "react-bootstrap";
+
 import { MovieConsumer } from "../../Context";
 import Swiper from "react-id-swiper";
+import { Link } from "react-router-dom";
 
 import "./Hero.scss";
 import "swiper/swiper.scss";
 
 const params = {
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-    
+  spaceBetween: 30,
+  centeredSlides: true,
+  rebuildOnUpdate: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
   }
+  // navigation: {
+  //   nextEl: ".swiper-button-next",
+  //   prevEl: ".swiper-button-prev"
+  // }
 };
 
 class Hero extends Component {
@@ -30,21 +32,24 @@ class Hero extends Component {
         <MovieConsumer>
           {value => {
             return (
-                <Swiper {...params}>
-                  {value.trending.slice(0, 3).map(movie => {
-                    return (
-                      <div style={{ width: "100%"}}>
-                        <img
-                          src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                          alt={movie.title}
-                        />
-                        <h1 className="carousel-caption">
-                        {movie.title}
-                        </h1>
-                      </div>
-                    );
-                  })}
-                </Swiper>
+              <Swiper {...params}>
+                {value.trending.slice(0, 5).map(movie => {
+                  return (  
+                    <Link
+                      to={`${movie.id}`}
+                      key={movie.id}
+                      onClick={() => value.handleClick(movie.id)}
+                    >
+                      <img
+                        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                        alt={movie.title}
+                        // style={{ height: "80vh", width:"100%" }}
+                      />
+                      <h1 className="carousel-caption">{movie.title}</h1>
+                    </Link>
+                  );
+                })}
+              </Swiper>
             );
           }}
         </MovieConsumer>
@@ -94,6 +99,20 @@ export default Hero;
   </a>
 </div> */
 }
+
+// {value.trending.slice(0, 5).map(movie => {
+//                     return (
+//                       <div >
+//                         <img
+//                           src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+//                           alt={movie.title}
+//                         />
+//                         <h1 className="carousel-caption">
+//                         {movie.title}
+//                         </h1>
+//                       </div>
+//                     );
+//                   })}
 
 {
   /* <Carousel className="Hero">
