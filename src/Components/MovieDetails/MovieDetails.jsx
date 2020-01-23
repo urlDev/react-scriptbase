@@ -20,20 +20,13 @@ import "swiper/swiper.scss";
 import "./MovieDetails.scss";
 
 const params = {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      slidesPerGroup: 3,
-      loop: true,
-      loopFillGroupWithBlank: false,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev'
-      }
-    }
+  slidesPerView: 3,
+  spaceBetween: 30,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+};
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
@@ -103,12 +96,12 @@ class MovieDetails extends Component {
                 <Row className="mt-5">
                   <Col className="p-0 text-left ml-3 ">
                     <p>
-                      <span className="leftTitle">Genre:</span>{" "}
-                      {value.genres.map(genre => genre.name).join(", ")}{" "}
+                      <span className="leftTitle">Genre:</span>
+                      {value.genres.map(genre => genre.name).join(", ")}
                     </p>
                     <p>
                       {/* using array and string methods like this, inside a ternary operator and string interpolator */}
-                      <span className="leftTitle">Release Date: </span>{" "}
+                      <span className="leftTitle">Release Date: </span>
                       {release_date
                         ? `${release_date
                             .split("-")
@@ -117,13 +110,13 @@ class MovieDetails extends Component {
                         : "Release Date Unknown"}
                     </p>
                     <p>
-                      <span className="leftTitle">Budget: </span>{" "}
+                      <span className="leftTitle">Budget: </span>
                       {budget > 0
                         ? `${budget.toLocaleString()}$`
                         : "Budget Unknown"}
                     </p>
                     <p>
-                      <span className="leftTitle">Revenue: </span>{" "}
+                      <span className="leftTitle">Revenue: </span>
                       {revenue > 0
                         ? `${revenue.toLocaleString()}$`
                         : "Not Estimated"}
@@ -137,16 +130,14 @@ class MovieDetails extends Component {
                     </p>
                     <p>
                       <span className="leftTitle">Production Countries: </span>
-                      {value.countries
-                        .map(country => country.name)
-                        .join(",    ")}
+                      {value.countries.map(country => country.name).join(", ")}
                     </p>
                     <p>
-                      <span className="leftTitle">Tagline: </span>{" "}
+                      <span className="leftTitle">Tagline: </span>
                       {tagline ? `${tagline}` : `No Tagline Found`}
                     </p>
                     <p>
-                      <span className="leftTitle">Runtime: </span> {runtime}{" "}
+                      <span className="leftTitle">Runtime: </span> {runtime}
                       minutes{" "}
                     </p>
                   </Col>
@@ -204,13 +195,38 @@ class MovieDetails extends Component {
                   })}
                 </Swiper>
               </div>
-              <Swiper className="reviews" {...params}>
-                {value.reviews.slice(0, 5).map(review => {
+              <div className="videos">
+                {value.videos.slice(0, 1).map(video => {
                   return (
-                    <div key={review.id}>{/* <h1>{review.author}</h1> */}</div>
+                    <Container className="p-0">
+                      <Row className="">
+                        <h1 className="trailerTitle mb-3">Trailer</h1>
+                      </Row>
+                      <Row
+                        className="video "
+                        style={{
+                          position: "relative",
+                          paddingBottom: "56.25%" /* 16:9 */,
+                          paddingTop: 25,
+                          height: 0
+                        }}
+                      >
+                        <iframe
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            width: "100%",
+                            height: "100%"
+                          }}
+                          src={`https://www.youtube.com/embed/${video.key}`}
+                          frameBorder="0"
+                        />
+                      </Row>
+                    </Container>
                   );
                 })}
-              </Swiper>
+              </div>
             </div>
           );
         }}

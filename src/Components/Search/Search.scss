@@ -1,0 +1,17 @@
+@import "../../index.scss";
+.form {
+    &-inline {
+        font-size: 2em;
+        width: 100%;
+        .form-control {
+            font-size: 1em;
+            width: calc(100% - 2em);
+        }
+        button {
+            background: $red;
+            border: none;
+            font-size: 1em;
+            color: $white;
+        }
+    }
+}

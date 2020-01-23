@@ -9,6 +9,7 @@
         .col {
             img {
                 width: 30em;
+                margin-bottom: 2em;
             }
         }
         .col {
@@ -21,6 +22,7 @@
                     text-transform: uppercase;
                     text-shadow: 2px 2px $blue;
                     font-weight: bold;
+                    margin: 0 auto;
                     span {
                         font-size: 0.5em;
                     }
@@ -174,7 +176,6 @@
                     margin-bottom: 0.5em;
                 }
             }
-            overflow: hidden;
             transition: all 0.3s linear;
             // border: 1px solid $yellow;
             // border-radius: 1em;
@@ -182,6 +183,25 @@
                 // box-shadow: 0 0.2px 0.9px rgba(0, 0, 0, 0.055), 0 0.6px 2.2px rgba(0, 0, 0, 0.112), 0 1.1px 4.1px rgba(0, 0, 0, 0.173), 0 2px 7.4px rgba(0, 0, 0, 0.245), 0 3.8px 13.8px rgba(0, 0, 0, 0.35), 0 9px 33px rgba(0, 0, 0, 0.54);
                 // filter: hue-rotate(50deg);
                 // transform: scale(1.5);
+            }
+        }
+    }
+    .videos {
+        margin-top: 5em;
+        .container {
+            .row {
+                .trailerTitle {
+                    font-family: $secondary-font;
+                    color: $yellow;
+                    font-weight: bold;
+                    display: block;
+                    width: 100%;
+                    text-align: left;
+                    margin-left: 0.3em;
+                }
+            }
+            .video {
+                margin-left: -0.8em;
             }
         }
     }

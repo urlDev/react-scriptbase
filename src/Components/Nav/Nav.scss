@@ -37,22 +37,6 @@
         .container {
             // border: 1px solid $white;
             // height: 100%;
-            .form {
-                &-inline {
-                    font-size: 2em;
-                    width: 100%;
-                    .form-control {
-                        font-size: 1em;
-                        width: calc(100% - 2em);
-                    }
-                    button {
-                        background: $red;
-                        border: none;
-                        font-size: 1em;
-                        color: $white;
-                    }
-                }
-            }
         }
         &-nav {
             margin: 0 auto !important;

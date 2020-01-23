@@ -21,7 +21,8 @@ class MovieProvider extends Component {
       companies: [],
       countries: [],
       similar: [],
-      reviews: []
+      videos: [],
+      movies: ""
     };
   }
 
@@ -35,6 +36,7 @@ class MovieProvider extends Component {
     // this.getDetails();
     // this.getCast();
     this.handleClick();
+    this.searchMovie();
   }
 
   //cleans the states for movie lists so they wouldnt stack up
@@ -97,7 +99,7 @@ https://api.themoviedb.org/3/movie/now_playing?api_key=${TMDB_KEY}&language=en-U
       .catch(error => {
         console.log(error);
       });
-    console.log("worked");
+    // console.log("worked");
   };
 
   getComing = () => {
@@ -145,7 +147,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       )
       .then(response => {
         const apiResponse = response.data;
-        console.log(this.state.id);
+        // console.log(this.state.id);
         this.setState({
           details: apiResponse,
           genres: apiResponse.genres,
@@ -191,15 +193,15 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       });
   }
 
-  getReviews = () => {
+  getVideos = () => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${this.state.id}/reviews?api_key=${TMDB_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/${this.state.id}/videos?api_key=${TMDB_KEY}&language=en-US&page=1`
       )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
-          reviews: apiResponse.results
+          videos: apiResponse.results
         });
         // console.log(apiResponse.results);
       })
@@ -208,6 +210,24 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       });
   }
 
+
+
+  searchMovie = () => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${this.state.movies}&language=en-US&page=1&include_adult=false`
+      )
+      .then(response => {
+        const apiResponse = response.data;
+        this.setState({
+          movies: apiResponse.results
+        });
+        console.log(apiResponse.results);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
@@ -223,22 +243,31 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         this.getDetails();
         this.getCast();
         this.getSimilar();
-        this.getReviews();
+        this.getVideos();
       }
     );
 
     
   };
+// gets the value of inputs
+  handleChange = e => {
+    this.setState({
+      movies: e.target.value
+    },
+    () =>{
+      // console.log(this.state.movies);
+      this.searchMovie();
+      } 
+    )
 
-  //for checking if a link is active
+    
+  };
 
-  //   checkActive = (match, location) => {
-  //     //some additional logic to verify you are in the home URI
-  //     if(!location) return false;
-  //     const {pathname} = location;
-  //     console.log(pathname);
-  //     return pathname === "/";
-  // }
+  handleSubmit = e => {
+    e.preventDefault();
+    this.searchMovie();
+    console.log("worked")
+  };
 
   render() {
     return (
@@ -251,10 +280,10 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           getNow: this.getNow,
           getComing: this.getComing,
           getTop: this.getTop,
-          checkActive: this.checkActive,
-          // getDetails: this.getDetails,
-          // getCast: this.getCast,
-          handleClick: this.handleClick
+          handleClick: this.handleClick,
+          handleSubmit: this.handleSubmit,
+          handleChange: this.handleChange,
+          searchMovie: this.searchMovie
         }}
       >
         {this.props.children}

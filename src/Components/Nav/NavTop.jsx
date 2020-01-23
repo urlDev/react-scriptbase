@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import "./Nav.scss";
 import { Link } from "react-router-dom";
+import Search from "../Search/Search";
 
 class NavTop extends Component {
   render() {
@@ -21,14 +22,7 @@ class NavTop extends Component {
             <Image src={require("../../logo.png")}></Image>
           </Link>
           <Container>
-          <Form inline className="">
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-              />
-              <Button variant="danger"><i className="fa fa-search" aria-hidden="true"></i></Button>
-            </Form>
+          <Search/>
           </Container>
           
           <Navbar.Toggle aria-controls="basic-navbar-nav"><span>MENU</span><i className="fas fa-film"></i> </Navbar.Toggle> 
