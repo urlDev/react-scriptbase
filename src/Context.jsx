@@ -22,7 +22,10 @@ class MovieProvider extends Component {
       countries: [],
       similar: [],
       videos: [],
-      movies: ""
+      movies: "",
+      moviesResult: "",
+      modalOpen: true,
+      
     };
   }
 
@@ -220,7 +223,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .then(response => {
         const apiResponse = response.data;
         this.setState({
-          movies: apiResponse.results
+          moviesResult: apiResponse.results
         });
         console.log(apiResponse.results);
       })
@@ -255,7 +258,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       movies: e.target.value
     },
     () =>{
-      // console.log(this.state.movies);
+      console.log(this.state.movies);
       this.searchMovie();
       } 
     )
@@ -266,6 +269,9 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   handleSubmit = e => {
     e.preventDefault();
     this.searchMovie();
+    this.setState({
+      movies: ""
+    })
     console.log("worked")
   };
 
@@ -296,3 +302,55 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
 const MovieConsumer = MovieContext.Consumer;
 
 export { MovieProvider, MovieConsumer };
+
+
+
+// constructor( props ) {
+// 	super( props );
+// 	this.state = {
+// 		query: '',
+// 		loading: false,
+// 		message: '',
+// 	};
+// 	this.cancel = '';
+// }
+// /**
+//  * Fetch the search results and update the state with the result.
+//  *
+//  * @param {int} updatedPageNo Updated Page No.
+//  * @param {String} query Search Query.
+//  *
+//  */
+// fetchSearchResults = (updatedPageNo = '', query ) => {
+// 	const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
+// 	// By default the limit of results is 20
+// 	const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
+// 	if (this.cancel) {
+// 		// Cancel the previous request before making a new request
+// 		this.cancel.cancel();
+// 	}
+// 	// Create a new CancelToken
+// 	this.cancel = axios.CancelToken.source();
+// 	axios
+// 		.get(searchUrl, {
+// 			cancelToken: this.cancel.token,
+// 		})
+// 		.then((res) => {
+// 			const resultNotFoundMsg = !res.data.hits.length
+// 				? 'There are no more search results. Please try a new search.'
+// 				: '';
+// 			this.setState({
+// 				results: res.data.hits,
+// 				message: resultNotFoundMsg,
+// 				loading: false,
+// 			});
+// 		})
+// 		.catch((error) => {
+// 			if (axios.isCancel(error) || error) {
+// 				this.setState({
+// 					loading: false,
+// 					message: 'Failed to fetch results.Please check network',
+// 				});
+// 			}
+// 		});
+// };

@@ -20,13 +20,14 @@ import "swiper/swiper.scss";
 import "./MovieDetails.scss";
 
 const params = {
-  slidesPerView: 3,
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true
-  }
-};
+      slidesPerView: 3,
+      spaceBetween: 30,
+      // centeredSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+      }
+    }
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
