@@ -54,7 +54,7 @@ class MovieProvider extends Component {
 
   getTrending = () => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${TMDB_KEY}`)
+      .get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${TMDB_KEY}`)
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -225,7 +225,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         this.setState({
           moviesResult: apiResponse.results
         });
-        console.log(apiResponse.results);
+        // console.log(apiResponse.results);
       })
       .catch(error => {
         console.log(error);
@@ -258,7 +258,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       movies: e.target.value
     },
     () =>{
-      console.log(this.state.movies);
+      // console.log(this.state.movies);
       this.searchMovie();
       } 
     )
@@ -269,11 +269,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   handleSubmit = e => {
     e.preventDefault();
     this.searchMovie();
-    this.setState({
-      movies: [],
-      moviesResult: []
-    })
-    console.log("worked")
+    e.target.reset();
   };
 
   openModal = () => {
@@ -286,6 +282,13 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     this.setState({
       modalOpen: false
     })
+  }
+
+  clearSearch = () => {
+     this.setState({
+       movies: [],
+       moviesResult: []
+     })
   }
 
   render() {
@@ -304,7 +307,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           handleChange: this.handleChange,
           searchMovie: this.searchMovie,
           openModal: this.openModal,
-          closeModal: this.closeModal
+          closeModal: this.closeModal,
+          clearSearch: this.clearSearch
         }}
       >
         {this.props.children}

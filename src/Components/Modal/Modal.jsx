@@ -1,30 +1,13 @@
 import React, { Component } from "react";
 import { MovieConsumer } from "../../Context";
 import {
-  Navbar,
-  Nav,
-  Image,
   Container,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown,
   Row,
   Col
 } from "react-bootstrap";
-import Swiper from "react-id-swiper";
+
 import { Link } from "react-router-dom";
-
-import "swiper/swiper.scss";
 import "./Modal.scss";
-
-const params = {
-  direction: "vertical",
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true
-  }
-};
 
 class Modal extends Component {
   constructor(props) {
@@ -40,6 +23,7 @@ class Modal extends Component {
           if (!modalOpen) {
             return null;
           } else {
+            //if there is a modal, then return this
             return (
               <div className="Modal" onClick={closeModal}>
                 <Container>
@@ -49,15 +33,18 @@ class Modal extends Component {
                       id,
                       poster_path,
                       title,
-                      release_date,
                       vote_average
                     } = movie;
                     return (
                       <Link
                         to={`${id}`}
-                        // className="card-img-top"
                         key={id}
-                        onClick={() => value.handleClick(id)}
+                        // getting handleClick function from context api and passing id 
+                        onClick={() => {
+                          value.handleClick(id);
+                          value.clearSearch();
+                        }}
+                       
                       >
                         <Row>
                           <Col className="col-md-2">

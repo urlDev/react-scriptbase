@@ -4,9 +4,6 @@ import {
   Nav,
   Image,
   Container,
-  Form,
-  FormControl,
-  Button,
   NavDropdown
 } from "react-bootstrap";
 import "./Nav.scss";

@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Navbar,
-  Nav,
-  Image,
-  Container,
-  Form,
-  FormControl,
-  Button,
-  NavDropdown
-} from "react-bootstrap";
+import { Nav, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./MidMenu.scss";
 import { MovieConsumer } from "../../Context";
@@ -26,17 +17,29 @@ class MidMenu extends Component {
             return (
               <Nav className="justify-content-center" activeKey="/home">
                 <Nav.Item>
-                  <Link to="/" className="mr-5 nav-link " onClick={value.getPopular}>
+                  <Link
+                    to="/"
+                    className="mr-5 nav-link "
+                    onClick={value.getPopular}
+                  >
                     POPULAR
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/" className="ml-5 mr-5 nav-link" onClick={value.getNow}>
+                  <Link
+                    to="/"
+                    className="ml-5 mr-5 nav-link"
+                    onClick={value.getNow}
+                  >
                     NOW PLAYING
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/" className="ml-5 mr-5 nav-link" onClick={value.getComing}>
+                  <Link
+                    to="/"
+                    className="ml-5 mr-5 nav-link"
+                    onClick={value.getComing}
+                  >
                     COMING SOON
                   </Link>
                 </Nav.Item>

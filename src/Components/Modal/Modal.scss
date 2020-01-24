@@ -21,7 +21,6 @@
         .row {
             padding-top: 1em;
             padding-bottom: 1em;
-            transition: all 0.5 ease-in-out;
             &:hover,
             &:hover .modalTitle {
                 background: $blue;

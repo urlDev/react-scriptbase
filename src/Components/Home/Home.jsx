@@ -6,7 +6,6 @@ import MoviesNow from "../MoviesNow/MoviesNow.jsx";
 import MoviesComing from "../MoviesComing/MoviesComing.jsx";
 import MoviesTop from "../MoviesTop/MoviesTop";
 
-import { Switch, Route } from "react-router-dom";
 
 import "./Home.scss";
 

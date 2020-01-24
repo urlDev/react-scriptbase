@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import {
-  Navbar,
-  Nav,
-  Image,
+  
   Container,
-  Form,
-  FormControl,
-  Button,
-  Carousel,
+
   Col,
   Row,
   Card
@@ -20,14 +15,18 @@ import "swiper/swiper.scss";
 import "./MovieDetails.scss";
 
 const params = {
-      slidesPerView: 3,
-      spaceBetween: 30,
-      // centeredSlides: true,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true
-      }
-    }
+  slidesPerView: 3,
+  spaceBetween: 30,
+  // centeredSlides: true,
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true
+  }
+};
+
+
+
+
 class MovieDetails extends Component {
   constructor(props) {
     super(props);
@@ -69,7 +68,7 @@ class MovieDetails extends Component {
                       className=""
                     />
                   </Col>
-                  
+
                   <Col>
                     <Row>
                       {/* <span>({release_date})</span> */}
@@ -140,7 +139,7 @@ class MovieDetails extends Component {
                     </p>
                     <p>
                       <span className="leftTitle">Runtime: </span> {runtime}
-                       minutes{" "}
+                      minutes{" "}
                     </p>
                   </Col>
                 </Row>
@@ -154,10 +153,20 @@ class MovieDetails extends Component {
                         className="ml-3 mb-5"
                         key={i.id}
                       >
-                        <Card.Img
-                          variant="top"
-                          src={`https://image.tmdb.org/t/p/original/${i.profile_path}`}
-                        />
+                        {i.profile_path ? (
+                          <Card.Img
+                            variant="top"
+                            src={`https://image.tmdb.org/t/p/original/${i.profile_path}`}
+                          />
+                        ) : (
+                          <Card.Img
+                            variant="top"
+                            src={
+                             require ("../../Assets/default.png")
+                            }
+                          />
+                        )}
+
                         <Card.Body>
                           <Card.Title>{i.name}</Card.Title>
                           <Card.Text>as {i.character}</Card.Text>
@@ -200,7 +209,7 @@ class MovieDetails extends Component {
               <div className="videos">
                 {value.videos.slice(0, 1).map(video => {
                   return (
-                    <Container className="p-0">
+                    <Container className="p-0" key={video.id}>
                       <Row className="">
                         <h1 className="trailerTitle mb-3">Trailer</h1>
                       </Row>
@@ -214,6 +223,7 @@ class MovieDetails extends Component {
                         }}
                       >
                         <iframe
+                          title={video.title}
                           style={{
                             position: "absolute",
                             top: 0,
@@ -238,36 +248,3 @@ class MovieDetails extends Component {
 }
 
 export default MovieDetails;
-
-{
-  /* <div className="card mb-3" style="max-width: 540px;" key={i.id}>
-                      <div className="row no-gutters">
-                        <div className="col-md-4">
-                          <img src={`https://image.tmdb.org/t/p/original/${i.profile_path}`} className="card-img" alt={i.name} />
-                        </div>
-                        <div className="col-md-8">
-                          <div className="card-body">
-                            <h5 className="card-title">{i.name}</h5>
-                            <p className="card-text">
-                              as {i.character}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </div> */
-}
-
-{
-  /* <div className="castAll">
-                      <img
-                        src={`https://image.tmdb.org/t/p/original/${i.profile_path}`}
-                        className="castImg"
-                        alt=""
-                      />
-                      <div className="cast">
-                      <h3>{i.name}</h3>
-                      <p>as {i.character}</p>
-                      </div>
-                      
-                    </div> */
-}
