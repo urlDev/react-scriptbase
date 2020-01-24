@@ -22,10 +22,10 @@ class MovieProvider extends Component {
       countries: [],
       similar: [],
       videos: [],
-      movies: "",
-      moviesResult: "",
-      modalOpen: true,
-      
+      movies: [],
+      moviesResult: [],
+      modalOpen: false,
+
     };
   }
 
@@ -270,10 +270,23 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     e.preventDefault();
     this.searchMovie();
     this.setState({
-      movies: ""
+      movies: [],
+      moviesResult: []
     })
     console.log("worked")
   };
+
+  openModal = () => {
+    this.setState({
+      modalOpen: true
+    })
+  }
+
+  closeModal = () => {
+    this.setState({
+      modalOpen: false
+    })
+  }
 
   render() {
     return (
@@ -289,7 +302,9 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           handleClick: this.handleClick,
           handleSubmit: this.handleSubmit,
           handleChange: this.handleChange,
-          searchMovie: this.searchMovie
+          searchMovie: this.searchMovie,
+          openModal: this.openModal,
+          closeModal: this.closeModal
         }}
       >
         {this.props.children}

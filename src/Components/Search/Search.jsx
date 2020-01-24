@@ -15,18 +15,19 @@ class Search extends Component {
         {value => {
           return (
             
-              <Form inline className="mt-3" onSubmit={value.handleSubmit}>
+              <Form inline className="mt-1" onSubmit={value.handleSubmit}>
                 <FormControl
                   onChange={value.handleChange}
                   type="text"
-                  placeholder="Search"
+                  placeholder="Search a Movie"
                   className="mr-sm-2"
+                  onClick={value.openModal}
                 //   value={value.movies}
                 //   name="movies"
                 />
                 <Button variant="danger" type="submit"><i className="fa fa-search" aria-hidden="true"></i></Button>
               </Form>
-            
+              
           );
         }}
       </MovieConsumer>

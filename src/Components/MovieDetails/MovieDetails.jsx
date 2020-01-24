@@ -69,6 +69,7 @@ class MovieDetails extends Component {
                       className=""
                     />
                   </Col>
+                  
                   <Col>
                     <Row>
                       {/* <span>({release_date})</span> */}
@@ -139,7 +140,7 @@ class MovieDetails extends Component {
                     </p>
                     <p>
                       <span className="leftTitle">Runtime: </span> {runtime}
-                      minutes{" "}
+                       minutes{" "}
                     </p>
                   </Col>
                 </Row>
