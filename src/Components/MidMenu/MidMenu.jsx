@@ -19,8 +19,16 @@ class MidMenu extends Component {
                 <Nav.Item>
                   <Link
                     to="/"
-                    className="mr-5 nav-link "
-                    onClick={value.getPopular}
+                    className={
+                      value.popular.length > 0
+                        ? "mr-5 nav-link clicked"
+                        : "mr-5 nav-link"
+                    }
+                    onClick={() => {
+                      value.getPopular();
+                      value.clearVisible();
+                      // value.popularSelected();
+                    }}
                   >
                     POPULAR
                   </Link>
@@ -28,8 +36,16 @@ class MidMenu extends Component {
                 <Nav.Item>
                   <Link
                     to="/"
-                    className="ml-5 mr-5 nav-link"
-                    onClick={value.getNow}
+                    className={
+                      value.now.length > 0
+                        ? "ml-5 mr-5 nav-link clicked"
+                        : "ml-5 mr-5 nav-link"
+                    }
+                    onClick={() => {
+                      value.getNow();
+                      value.clearVisible();
+                      // value.nowSelected();
+                    }}
                   >
                     NOW PLAYING
                   </Link>
@@ -37,14 +53,34 @@ class MidMenu extends Component {
                 <Nav.Item>
                   <Link
                     to="/"
-                    className="ml-5 mr-5 nav-link"
-                    onClick={value.getComing}
+                    className={
+                      value.coming.length > 0
+                        ? "ml-5 mr-5 nav-link clicked"
+                        : "ml-5 mr-5 nav-link"
+                    }
+                    onClick={() => {
+                      value.getComing();
+                      value.clearVisible();
+                      // value.comingSelected();
+                    }}
                   >
                     COMING SOON
                   </Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Link to="/" className="ml-5 nav-link" onClick={value.getTop}>
+                  <Link
+                    to="/"
+                    className={
+                      value.top.length > 0
+                        ? "ml-5 nav-link clicked"
+                        : "ml-5  nav-link"
+                    }
+                    onClick={() => {
+                      value.getTop();
+                      value.clearVisible();
+                      // value.topSelected();
+                    }}
+                  >
                     TOP RATED
                   </Link>
                 </Nav.Item>

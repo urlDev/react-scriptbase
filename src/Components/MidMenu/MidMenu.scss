@@ -18,13 +18,17 @@
                 font-family: $primary-font;
                 margin-top: 0.7em;
                 transition: all 0.5s ease-in-out;
-                &:hover,
-                &:active {
+                &:hover {
                     color: $yellow;
                     font-weight: bold;
                     text-shadow: 1px 1px $blue;
                 }
             }
         }
+    }
+    .clicked {
+        color: $yellow !important;
+        font-weight: bold;
+        text-shadow: 1px 1px $blue;
     }
 }

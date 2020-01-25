@@ -25,14 +25,18 @@ class MovieProvider extends Component {
       movies: [],
       moviesResult: [],
       modalOpen: false,
-
+      visible: 10,
+      popularSelect: true,
+      nowSelect: false,
+      comingSelect: false,
+      topSelect: false
     };
   }
 
   componentDidMount() {
     this.getTrending();
     this.getPopular();
-    // this.cleanState();
+    this.cleanState();
     // this.getNow();
     // this.getComing();
     // this.getTop();
@@ -54,7 +58,9 @@ class MovieProvider extends Component {
 
   getTrending = () => {
     axios
-      .get(`https://api.themoviedb.org/3/trending/movie/day?api_key=${TMDB_KEY}`)
+      .get(
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${TMDB_KEY}`
+      )
       .then(response => {
         const apiResponse = response.data;
         this.setState({
@@ -194,7 +200,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   getVideos = () => {
     axios
@@ -211,9 +217,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .catch(error => {
         console.log(error);
       });
-  }
-
-
+  };
 
   searchMovie = () => {
     axios
@@ -230,7 +234,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .catch(error => {
         console.log(error);
       });
-  }
+  };
 
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
@@ -240,8 +244,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       {
         id: id
       },
-  // how to put two callback functions within setState
-  // https://stackoverflow.com/questions/53788156/passing-multiple-functions-as-callback-in-setstate
+      // how to put two callback functions within setState
+      // https://stackoverflow.com/questions/53788156/passing-multiple-functions-as-callback-in-setstate
       () => {
         this.getDetails();
         this.getCast();
@@ -249,21 +253,18 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         this.getVideos();
       }
     );
-
-    
   };
-// gets the value of inputs
+  // gets the value of inputs
   handleChange = e => {
-    this.setState({
-      movies: e.target.value
-    },
-    () =>{
-      // console.log(this.state.movies);
-      this.searchMovie();
-      } 
-    )
-
-    
+    this.setState(
+      {
+        movies: e.target.value
+      },
+      () => {
+        // console.log(this.state.movies);
+        this.searchMovie();
+      }
+    );
   };
 
   handleSubmit = e => {
@@ -275,22 +276,40 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   openModal = () => {
     this.setState({
       modalOpen: true
-    })
-  }
+    });
+  };
 
   closeModal = () => {
     this.setState({
       modalOpen: false
-    })
-  }
+    });
+  };
 
   clearSearch = () => {
-     this.setState({
-       movies: [],
-       moviesResult: []
-     })
-  }
+    this.setState({
+      movies: [],
+      moviesResult: []
+    });
+  };
 
+  //clears the state of visible to go back to initial state of 10 movies
+  clearVisible = () => {
+    this.setState({
+      visible: 10,
+      now: [],
+      coming: [],
+      top: []
+    });
+  };
+
+  //https://codepen.io/grantdotlocal/pen/zReNgE
+  loadMore = () => {
+    this.setState(prev => {
+      return { visible: prev.visible + 5 };
+    });
+  };
+
+  
   render() {
     return (
       <MovieContext.Provider
@@ -308,7 +327,10 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           searchMovie: this.searchMovie,
           openModal: this.openModal,
           closeModal: this.closeModal,
-          clearSearch: this.clearSearch
+          clearSearch: this.clearSearch,
+          loadMore: this.loadMore,
+          cleanState: this.cleanState,
+          clearVisible: this.clearVisible
         }}
       >
         {this.props.children}
@@ -322,54 +344,3 @@ const MovieConsumer = MovieContext.Consumer;
 
 export { MovieProvider, MovieConsumer };
 
-
-
-// constructor( props ) {
-// 	super( props );
-// 	this.state = {
-// 		query: '',
-// 		loading: false,
-// 		message: '',
-// 	};
-// 	this.cancel = '';
-// }
-// /**
-//  * Fetch the search results and update the state with the result.
-//  *
-//  * @param {int} updatedPageNo Updated Page No.
-//  * @param {String} query Search Query.
-//  *
-//  */
-// fetchSearchResults = (updatedPageNo = '', query ) => {
-// 	const pageNumber = updatedPageNo ? `&page=${updatedPageNo}` : '';
-// 	// By default the limit of results is 20
-// 	const searchUrl = `https://pixabay.com/api/?key=12413278-79b713c7e196c7a3defb5330e&q=${query}${pageNumber}`;
-// 	if (this.cancel) {
-// 		// Cancel the previous request before making a new request
-// 		this.cancel.cancel();
-// 	}
-// 	// Create a new CancelToken
-// 	this.cancel = axios.CancelToken.source();
-// 	axios
-// 		.get(searchUrl, {
-// 			cancelToken: this.cancel.token,
-// 		})
-// 		.then((res) => {
-// 			const resultNotFoundMsg = !res.data.hits.length
-// 				? 'There are no more search results. Please try a new search.'
-// 				: '';
-// 			this.setState({
-// 				results: res.data.hits,
-// 				message: resultNotFoundMsg,
-// 				loading: false,
-// 			});
-// 		})
-// 		.catch((error) => {
-// 			if (axios.isCancel(error) || error) {
-// 				this.setState({
-// 					loading: false,
-// 					message: 'Failed to fetch results.Please check network',
-// 				});
-// 			}
-// 		});
-// };

@@ -9,13 +9,20 @@ import {
 import "./Nav.scss";
 import { Link } from "react-router-dom";
 import Search from "../Search/Search";
+import { MovieConsumer } from "../../Context";
 
 class NavTop extends Component {
   render() {
     return (
-      <div className="NavTop">
+      <MovieConsumer>
+      { value => {
+        return (
+          <div className="NavTop">
         <Navbar expand="false" >
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand" onClick={() => {
+            value.clearVisible()
+            value.getPopular()
+          }}>
             <Image src={require("../../logo.png")}></Image>
           </Link>
           <Container>
@@ -70,6 +77,10 @@ class NavTop extends Component {
           </Navbar.Collapse>
         </Navbar>
       </div>
+        )
+      }}
+      </MovieConsumer>
+      
     );
   }
 }

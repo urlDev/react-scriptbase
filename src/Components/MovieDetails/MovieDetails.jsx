@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  
-  Container,
-
-  Col,
-  Row,
-  Card
-} from "react-bootstrap";
+import { Container, Col, Row, Card } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
 import Swiper from "react-id-swiper";
 import { Link } from "react-router-dom";
@@ -23,9 +16,6 @@ const params = {
     clickable: true
   }
 };
-
-
-
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -161,9 +151,7 @@ class MovieDetails extends Component {
                         ) : (
                           <Card.Img
                             variant="top"
-                            src={
-                             require ("../../Assets/default.png")
-                            }
+                            src={require("../../Assets/default.png")}
                           />
                         )}
 
