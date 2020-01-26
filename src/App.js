@@ -4,6 +4,7 @@ import Home from "./Components/Home/Home.jsx";
 import MovieDetails from "./Components/MovieDetails/MovieDetails.jsx";
 import Footer from "./Components/Footer/Footer.jsx"
 import Modal from "./Components/Modal/Modal.jsx"
+import SignIn from "./Components/SignIn/SignIn.jsx"
 
 import { Switch, Route } from "react-router-dom";
 
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <NavTop />
       <Switch>
+        <Route path="/signin" component={SignIn}/>
         <Route exact path="/" component={Home} />
         <Route path="/:id" component={MovieDetails} />
       </Switch>

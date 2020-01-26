@@ -13,7 +13,7 @@ class MoviesComing extends Component {
           <Col>
             <MovieConsumer>
               {value => {
-               return (
+                return (
                   <div>
                     <div>
                       {value.coming.slice(0, value.visible).map(i => {
@@ -22,7 +22,10 @@ class MoviesComing extends Component {
                             to={`${i.id}`}
                             className="card text-white fade-in"
                             key={i.id}
-                            onClick={() => value.handleClick(i.id)}
+                            onClick={() => {
+                              value.handleClick(i.id);
+                              value.refreshPage();
+                            }}
                           >
                             <img
                               src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
@@ -37,7 +40,7 @@ class MoviesComing extends Component {
                       })}
                     </div>
                     <div>
-                    {/* if value visible is smaller than popular.length then add button */}
+                      {/* if value visible is smaller than popular.length then add button */}
                       {value.visible < value.coming.length && (
                         <button
                           onClick={value.loadMore}

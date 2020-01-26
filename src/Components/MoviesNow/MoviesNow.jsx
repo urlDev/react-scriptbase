@@ -23,7 +23,10 @@ class MoviesNow extends Component {
                             to={`${i.id}`}
                             className="card text-white fade-in"
                             key={i.id}
-                            onClick={() => value.handleClick(i.id)}
+                            onClick={() => {
+                              value.handleClick(i.id);
+                              value.refreshPage();
+                            }}
                           >
                             <img
                               src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
@@ -38,7 +41,7 @@ class MoviesNow extends Component {
                       })}
                     </div>
                     <div>
-                    {/* if value visible is smaller than popular.length then add button */}
+                      {/* if value visible is smaller than popular.length then add button */}
                       {value.visible < value.now.length && (
                         <button
                           onClick={value.loadMore}

@@ -18,10 +18,11 @@ class NavTop extends Component {
       { value => {
         return (
           <div className="NavTop">
-        <Navbar expand="false" >
+        <Navbar  >
           <Link to="/" className="navbar-brand" onClick={() => {
             value.clearVisible()
             value.getPopular()
+            value.refreshPage()
           }}>
             <Image src={require("../../logo.png")}></Image>
           </Link>
@@ -33,7 +34,8 @@ class NavTop extends Component {
           <Navbar.Collapse id="basic-navbar-nav" className="">
             <Nav className="flex-row d-flex">
               <Link to="/" className="pl-4 pr-5 nav-link">Home</Link>
-              <NavDropdown title="Movies" id="basic-nav-dropdown" className="pl-5 pr-5">
+              <Link to="/signin" className="pl-4 pr-5 nav-link">Sign In</Link>
+              {/* <NavDropdown title="Movies" id="basic-nav-dropdown" className="pl-5 pr-5">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -45,8 +47,8 @@ class NavTop extends Component {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title="TV Shows" id="basic-nav-dropdown" className="pl-5 pr-5">
+              </NavDropdown> */}
+              {/* <NavDropdown title="TV Shows" id="basic-nav-dropdown" className="pl-5 pr-5">
                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Another action
@@ -71,7 +73,7 @@ class NavTop extends Component {
                 <NavDropdown.Item href="#action/3.4">
                   Separated link
                 </NavDropdown.Item>
-              </NavDropdown>
+              </NavDropdown> */}
             </Nav>
             
           </Navbar.Collapse>

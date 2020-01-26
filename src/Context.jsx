@@ -26,10 +26,7 @@ class MovieProvider extends Component {
       moviesResult: [],
       modalOpen: false,
       visible: 10,
-      popularSelect: true,
-      nowSelect: false,
-      comingSelect: false,
-      topSelect: false
+      pageRefreshed: false
     };
   }
 
@@ -309,7 +306,12 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
-  
+  refreshPage = () => {
+    this.setState({
+      pageRefreshed: !this.state.pageRefreshed
+    })
+  };
+
   render() {
     return (
       <MovieContext.Provider
@@ -330,7 +332,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           clearSearch: this.clearSearch,
           loadMore: this.loadMore,
           cleanState: this.cleanState,
-          clearVisible: this.clearVisible
+          clearVisible: this.clearVisible,
+          refreshPage: this.refreshPage
         }}
       >
         {this.props.children}
@@ -343,4 +346,3 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
 const MovieConsumer = MovieContext.Consumer;
 
 export { MovieProvider, MovieConsumer };
-

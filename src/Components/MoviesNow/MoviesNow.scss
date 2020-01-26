@@ -48,8 +48,12 @@
         font-family: $secondary-font;
         cursor: pointer;
         border-radius: 0.25em;
+        transition: all 0.5s ease-in-out;
         &:focus {
             outline: 1px solid $white;
+        }
+        &:hover {
+            background: $blue
         }
     }
 }

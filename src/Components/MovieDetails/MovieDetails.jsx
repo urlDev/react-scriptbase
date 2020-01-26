@@ -179,7 +179,10 @@ class MovieDetails extends Component {
                         style={{ width: "15em" }}
                         className="card ml-3"
                         key={movie.id}
-                        onClick={() => value.handleClick(movie.id)}
+                        onClick={() => {
+                          value.handleClick(movie.id);
+                          value.refreshPage();
+                        }}
                       >
                         <Card.Img
                           variant="top"

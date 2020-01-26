@@ -42,8 +42,13 @@
             margin: 0 auto !important;
             .nav-link {
                 font-size: 1.5em;
-                color: $blue;
+                color: $red;
                 font-weight: bold;
+                transition: all 0.5s ease-in-out;
+                &:hover,
+                &:focus {
+                    color: $blue;
+                }
             }
         }
         &-collapse {
