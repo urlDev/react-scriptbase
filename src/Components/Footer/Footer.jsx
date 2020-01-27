@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MovieConsumer } from "../../Context";
-import firstFooter from "../../Assets/Footer1.png";
-import secondFooter from "../../Assets/Footer2.png";
+
 
 import "./Footer.scss";
 
@@ -19,11 +18,11 @@ class Footer extends Component {
           return (
             <div
               className="Footer"
-              style={
-                value.pageRefreshed
-                  ? { backgroundImage: `url(${firstFooter})` , backgroundRepeat: "no-repeat", backgroundSize:"cover"}
-                  : { backgroundImage: `url(${secondFooter})`, backgroundRepeat: "no-repeat", backgroundSize:"cover" } 
-              }
+              // style={
+              //   value.pageRefreshed
+              //     ? { backgroundImage: `url(${morgan})` , backgroundRepeat: "no-repeat", backgroundSize:"cover"}
+              //     : { backgroundImage: `url(${secondFooter})`, backgroundRepeat: "no-repeat", backgroundSize:"cover" }
+              // }
             >
               <Container>
                 <Row>
@@ -43,18 +42,27 @@ class Footer extends Component {
 
                     {/* <h1>ScriptBase</h1> */}
                   </Col>
-                  <Col>
+                  <Col className="pr-0">
+                    <img
+                      src={
+                        value.pageRefreshed
+                          ? require("../../Assets/morganFreeman.png")
+                          : require("../../Assets/guyPearce.png")
+                      }
+                      alt=""
+                      className={value.pageRefreshed ? "morganFreeman" : "guyPearce"}
+                    />
                     {value.pageRefreshed ? (
                       <h1 className="footerText">
                         <em>
-                          "We all need memories to remind ourselves who we are"
+                          "Hope is a good thing, maybe the best of the good
+                          things and no good thing ever dies"
                         </em>
                       </h1>
                     ) : (
                       <h1 className="footerText">
                         <em>
-                          "Hope is a good thing, maybe the best of the good
-                          things and no good thing ever dies"
+                          "We all need memories to remind ourselves who we are"
                         </em>
                       </h1>
                     )}

@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { TMDB_KEY } from "./config.js";
 import axios from "axios";
+import {
+  auth,
+  createUserProfileDocument
+} from "../src/Components/Firebase/firebase.utils.js";
 
 const MovieContext = React.createContext();
 
@@ -26,9 +30,13 @@ class MovieProvider extends Component {
       moviesResult: [],
       modalOpen: false,
       visible: 10,
-      pageRefreshed: false
+      pageRefreshed: false,
+      currentUser:null
     };
   }
+
+   //we need this to sign out, currently user is not signed out
+  unsubscribeFromAuth = null;
 
   componentDidMount() {
     this.getTrending();
@@ -41,7 +49,37 @@ class MovieProvider extends Component {
     // this.getCast();
     this.handleClick();
     this.searchMovie();
+
+    // set the currentusers state as signed in user with google
+    //userAuth comes from firebase
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
+      //if userAuth exists(have any value besides null)
+      if (userAuth) {
+        //userRef is waiting for the function we created in firebase utils that created a snapshot, which takes userAuth as value
+        const userRef = await createUserProfileDocument(userAuth);
+        
+        userRef.onSnapshot(snapShot => {
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
+            }
+          }, () => console.log(this.state.currentUser));
+        });
+      } else {
+        //if user logs out then state will be userAuth(if theres no userAuth then its null)
+        this.setState({
+          currentUser: userAuth
+        });
+      }
+    });
   }
+
+  //this is how user will sign out
+  componentWillUnmount() {
+    this.unsubscribeFromAuth();
+  }
+
 
   //cleans the states for movie lists so they wouldnt stack up
   cleanState = () => {

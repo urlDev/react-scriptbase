@@ -23,10 +23,21 @@
             // border: 1px solid $yellow;
             // border-radius: 1em;
         }
-        &-title {
+        .voteAverage {
             position: absolute;
             top: 85%;
             left: 10%;
+            background: $yellow;
+            width: 3em;
+            height: 3em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 3em;
+        }
+        .hearts {
+            position: absolute;
+            top: 85%;
+            left: 80%;
             background: $yellow;
             width: 3em;
             height: 3em;

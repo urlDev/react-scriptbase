@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, Form } from 'react-bootstrap';
-// import { auth, signInWithGoogle } from '../Firebase/firebase.utils.js';
+import { auth, signInWithGoogle } from '../../Firebase/firebase.utils.js';
 
 import "./SignInComponent.scss";
 
@@ -13,20 +13,20 @@ class SignInComponent extends Component {
 		};
 	}
 
-	// handleSubmit = async (event) => {
-	// 	event.preventDefault();
+	handleSubmit = async (event) => {
+		event.preventDefault();
 
-	// 	const { email, password } = this.state;
+		const { email, password } = this.state;
 
-	// 	try {
-	// 		//wait for the auth to response 
-	// 		await auth.signInWithEmailAndPassword(email, password);
-	// 		//if theres a user like that, it will sign in and then set the states to empty
-	// 		this.setState({ email: '', password: '' });
-	// 	} catch (error) {
-	// 		console.log(error);
-	// 	}
-	// };
+		try {
+			//wait for the auth to response 
+			await auth.signInWithEmailAndPassword(email, password);
+			//if theres a user like that, it will sign in and then set the states to empty
+			this.setState({ email: '', password: '' });
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	handleChange = (e) => {
 		const { value, name } = e.target;
@@ -65,10 +65,10 @@ class SignInComponent extends Component {
 					</Form.Group>
 					
 					<Button variant="outline-dark" className="btn-lg mt-5 p-3 loginButton" type="submit" block>
-						LOGIN
+						SIGN IN
 					</Button>
 					<Button
-						// onClick={signInWithGoogle}
+						onClick={signInWithGoogle}
 						variant="outline-primary"
 						className="mt-3 p-3 btn-lg googleButton"
 						type="submit"

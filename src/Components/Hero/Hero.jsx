@@ -38,7 +38,7 @@ class Hero extends Component {
                     <Link
                       to={`${movie.id}`}
                       key={movie.id}
-                      onClick={() => value.handleClick(movie.id)}
+                      onClick={() => {value.handleClick(movie.id); value.refreshPage();}}
                     >
                       <img
                         src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}

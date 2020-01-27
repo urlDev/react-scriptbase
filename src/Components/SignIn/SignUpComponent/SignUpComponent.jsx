@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, Form } from 'react-bootstrap';
-// import { auth, createUserProfileDocument } from '../Firebase/firebase.utils.js';
+import { auth, createUserProfileDocument } from '../../Firebase/firebase.utils.js';
 
 import "./SignUpComponent.scss";
 
@@ -15,29 +15,29 @@ class SignUpComponent extends Component {
 		};
 	}
 
-	// handleSubmit = async (e) => {
-	// 	e.preventDefault();
+	handleSubmit = async (e) => {
+		e.preventDefault();
 
-    //      const { firstName, email, password } = this.state;
+         const { firstName, email, password } = this.state;
 
-	// 	try {
-	// 		//user is what we create with email and password with creating user function, and giving it auth
-	// 		const { user } = await auth.createUserWithEmailAndPassword(email, password);
+		try {
+			//user is what we create with email and password with creating user function, and giving it auth
+			const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
-	// 		//wait for function to create a user with firstName
-	// 		await createUserProfileDocument(user, { firstName });
+			//wait for function to create a user with firstName
+			await createUserProfileDocument(user, { firstName });
 
-	// 		//once its done, set states to initial
-	// 		this.setState({
-	// 			firstName: '',
-	// 			lastName: '',
-	// 			email: '',
-	// 			password: ''
-	// 		});
-	// 	} catch (error) {
-	// 		console.error(error);
-	// 	}
-	// };
+			//once its done, set states to initial
+			this.setState({
+				firstName: '',
+				lastName: '',
+				email: '',
+				password: ''
+			});
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	handleChange = (e) => {
 		const { name, value } = e.target;

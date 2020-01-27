@@ -33,7 +33,10 @@ class MoviesPopular extends Component {
                               alt={i.title}
                             />
                             <div className="card-img-overlay">
-                              <h6 className="card-title">{i.vote_average}</h6>
+                              <h6 className="card-title voteAverage">{i.vote_average}</h6>
+                            </div>
+                            <div className="card-img-overlay">
+                              <h6 className="card-title hearts"><i className="fas fa-heart    "></i></h6>
                             </div>
                           </Link>
                         );
