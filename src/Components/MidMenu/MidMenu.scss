@@ -32,3 +32,35 @@
         text-shadow: 1px 1px $blue;
     }
 }
+
+@media (min-width: 300px) and (max-width:750px) {
+    .MidMenu {
+        padding: 0;
+        // margin: 0;
+        .nav {
+            &-item {
+                a {
+                    font-size: 1.2em;
+                    padding: 0;
+                    margin: 1em 0 !important;
+                    width: 7em;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 751px) and (max-width:999.98px) {
+    .MidMenu {
+        padding: 0;
+        .nav {
+            &-item {
+                a {
+                    font-size: 2em;
+                    padding: 0;
+                    // width: 7em;
+                }
+            }
+        }
+    }
+}

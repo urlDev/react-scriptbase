@@ -82,3 +82,18 @@
         opacity: 1;
     }
 }
+
+@media (min-width: 300px) and (max-width:991.98px) {
+    .MoviesPopular {
+        .card {
+            width: 12em;
+            .voteAverage {
+                top: 80%;
+            }
+            .hearts {
+                top: 80%;
+                left: 67%;
+            }
+        }
+    }
+}

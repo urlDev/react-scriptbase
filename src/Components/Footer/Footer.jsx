@@ -26,11 +26,11 @@ class Footer extends Component {
             >
               <Container>
                 <Row>
-                  <Col className="mt-5 p-0">
+                  <Col className="mt-5 p-0 col-xs-12 col-md-6">
                     <Link to="/">
                       <img
                         src={require("../../logo_transparent.png")}
-                        className="float-left mr-3"
+                        className="float-left mr-3 footerBrand"
                         alt=""
                         onClick={() => {
                           value.clearVisible();
@@ -42,7 +42,7 @@ class Footer extends Component {
 
                     {/* <h1>ScriptBase</h1> */}
                   </Col>
-                  <Col className="pr-0">
+                  <Col className="pr-0 d-none d-md-block">
                     <img
                       src={
                         value.pageRefreshed

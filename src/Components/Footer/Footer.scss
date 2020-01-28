@@ -11,7 +11,7 @@
     .container {
         .row {
             .col {
-                img {
+                .footerBrand {
                     width: 13em;
                     margin-left: -4em;
                 }
@@ -39,6 +39,42 @@
                     // margin-bottom: 2em;
                     // margin-left: 4.5em;
                     animation: fadeIn 2s linear;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width:750px) {
+    .Footer {
+        .container {
+            padding: 5em;
+            .row {
+                .col {
+                    .footerBrand {
+                        width: 10em;
+                    }
+                }
+                .col {
+                    .morganFreeman {
+                        width: 15em;
+                        margin-top: 2em;
+                        float: right;
+                    }
+                    .guyPearce {
+                        width: 18em;
+                        margin-top: 2em;
+                        float: right;
+                    }
+                    .footerText {
+                        font-family: $secondary-font;
+                        color: $white;
+                        font-size: 2em;
+                        margin-top: 3em;
+                        // margin-bottom: 2em;
+                        // margin-left: 4.5em;
+                        animation: fadeIn 2s linear;
+                    }
                 }
             }
         }

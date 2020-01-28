@@ -10,7 +10,7 @@ class MoviesPopular extends Component {
     return (
       <Container className="MoviesPopular mt-3">
         <Row>
-          <Col>
+          <Col >
             <MovieConsumer>
               {value => {
                 return (
@@ -42,10 +42,10 @@ class MoviesPopular extends Component {
                             <div className="">
                               <h6
                                 className="card-title hearts"
-                                onClick={() => value.updateMovieInfo(i.id)}
+                                onClick={() => value.addFavorite(i.id)}
                               >
-                              <i className="fa fa-heart" aria-hidden="true"></i>
-                                {console.log(value.currentUser)}
+                              {value.favorite.includes(i.id) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>}
+                                
                               </h6>
                             </div>
                           </div>

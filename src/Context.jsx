@@ -35,7 +35,7 @@ class MovieProvider extends Component {
       visible: 10,
       pageRefreshed: false,
       currentUser: null,
-      
+      favorite: []
     };
   }
 
@@ -363,40 +363,11 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
-  // likeUnlikeMovie = () => {
-  //   this.setState({
-  //     currentUser: this.state.currentUser.heart.update(true)
-  //   })
-  // }
 
-  // movieRefCollection = () => {
-  //   const movieRef = firebase
-  //     .database()
-  //     .ref(`movieList/${this.state.currentUser}`);
-  //   movieRef.on("value", snapshot => {
-  //     let popular = snapshot.val();
 
-  //     console.log(this.state.popular);
-
-  //     let newState = [];
-
-  //     for (let movie in popular) {
-  //       newState.push({
-  //         id: popular[movie].id,
-  //         title: popular[movie].title,
-  //         like: popular[movie].like,
-
-  //       });
-  //     }
-
-  //     this.setState({
-  //       popular: newState
-  //     });
-
-  //     console.log(this.state.popular);
-  //   });
-  // };
-
+//https://stackoverflow.com/questions/55316841/how-to-update-value-of-countjs-with-react-and-firebase
+//how to update data in firebase
+//https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
   updateMovieInfo = (id) => {
     // const user = this.state.currentUser;
 
@@ -414,6 +385,16 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       console.log("no user is logged");
     }
     console.log(this.state.currentUser.heart);
+  };
+
+  addFavorite = id => {
+    const { popular, favorite } = this.state;
+    const copyFavorites = [...favorite];
+
+    if (!favorite.includes(id)) {
+      copyFavorites.push(id);
+      this.setState({ favorite: copyFavorites }, () => console.log(this.state.favorite));
+    }
   };
 
   render() {
@@ -438,7 +419,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           cleanState: this.cleanState,
           clearVisible: this.clearVisible,
           refreshPage: this.refreshPage,
-          updateMovieInfo: this.updateMovieInfo
+          updateMovieInfo: this.updateMovieInfo,
+          addFavorite: this.addFavorite
         }}
       >
         {this.props.children}
