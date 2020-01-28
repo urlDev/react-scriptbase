@@ -18,27 +18,37 @@ class MoviesPopular extends Component {
                     <div>
                       {value.popular.slice(0, value.visible).map(i => {
                         return (
-                          <Link
-                            to={`${i.id}`}
-                            className="card text-white fade-in"
-                            key={i.id}
-                            onClick={() => {
-                              value.handleClick(i.id);
-                              value.refreshPage();
-                            }}
-                          >
-                            <img
-                              src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
-                              className="card-img"
-                              alt={i.title}
-                            />
-                            <div className="card-img-overlay">
-                              <h6 className="card-title voteAverage">{i.vote_average}</h6>
+                          <div className="card text-white fade-in" key={i.id}>
+                            <Link
+                              to={`${i.id}`}
+                              key={i.id}
+                              onClick={() => {
+                                value.handleClick(i.id);
+                                value.refreshPage();
+                              }}
+                            >
+                              <img
+                                src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
+                                className="card-img"
+                                alt={i.title}
+                              />
+                            </Link>
+
+                            <div className="">
+                              <h6 className="card-title voteAverage">
+                                {i.vote_average}
+                              </h6>
                             </div>
-                            <div className="card-img-overlay">
-                              <h6 className="card-title hearts"><i className="fas fa-heart    "></i></h6>
+                            <div className="">
+                              <h6
+                                className="card-title hearts"
+                                onClick={() => value.updateMovieInfo(i.id)}
+                              >
+                              <i className="fa fa-heart" aria-hidden="true"></i>
+                                {console.log(value.currentUser)}
+                              </h6>
                             </div>
-                          </Link>
+                          </div>
                         );
                       })}
                     </div>

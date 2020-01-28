@@ -3,8 +3,11 @@ import { TMDB_KEY } from "./config.js";
 import axios from "axios";
 import {
   auth,
-  createUserProfileDocument
+  createUserProfileDocument,
+  firestore
 } from "../src/Components/Firebase/firebase.utils.js";
+
+import firebase from "firebase/app";
 
 const MovieContext = React.createContext();
 
@@ -31,14 +34,16 @@ class MovieProvider extends Component {
       modalOpen: false,
       visible: 10,
       pageRefreshed: false,
-      currentUser:null
+      currentUser: null,
+      
     };
   }
 
-   //we need this to sign out, currently user is not signed out
+  //we need this to sign out, currently user is not signed out
   unsubscribeFromAuth = null;
 
-  componentDidMount() {
+  componentDidMount = () =>  {
+    
     this.getTrending();
     this.getPopular();
     this.cleanState();
@@ -49,37 +54,45 @@ class MovieProvider extends Component {
     // this.getCast();
     this.handleClick();
     this.searchMovie();
+    
 
     // set the currentusers state as signed in user with google
     //userAuth comes from firebase
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       //if userAuth exists(have any value besides null)
+      
       if (userAuth) {
         //userRef is waiting for the function we created in firebase utils that created a snapshot, which takes userAuth as value
         const userRef = await createUserProfileDocument(userAuth);
-        
+
+       
+
         userRef.onSnapshot(snapShot => {
-          this.setState({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data()
+          
+          this.setState(
+            {
+              currentUser: {
+                id: snapShot.id,
+                ...snapShot.data()
+              }
             }
-          }, () => console.log(this.state.currentUser));
+          );
         });
       } else {
+        
         //if user logs out then state will be userAuth(if theres no userAuth then its null)
         this.setState({
           currentUser: userAuth
         });
       }
     });
+    
   }
 
   //this is how user will sign out
   componentWillUnmount() {
     this.unsubscribeFromAuth();
   }
-
 
   //cleans the states for movie lists so they wouldnt stack up
   cleanState = () => {
@@ -347,7 +360,60 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   refreshPage = () => {
     this.setState({
       pageRefreshed: !this.state.pageRefreshed
-    })
+    });
+  };
+
+  // likeUnlikeMovie = () => {
+  //   this.setState({
+  //     currentUser: this.state.currentUser.heart.update(true)
+  //   })
+  // }
+
+  // movieRefCollection = () => {
+  //   const movieRef = firebase
+  //     .database()
+  //     .ref(`movieList/${this.state.currentUser}`);
+  //   movieRef.on("value", snapshot => {
+  //     let popular = snapshot.val();
+
+  //     console.log(this.state.popular);
+
+  //     let newState = [];
+
+  //     for (let movie in popular) {
+  //       newState.push({
+  //         id: popular[movie].id,
+  //         title: popular[movie].title,
+  //         like: popular[movie].like,
+
+  //       });
+  //     }
+
+  //     this.setState({
+  //       popular: newState
+  //     });
+
+  //     console.log(this.state.popular);
+  //   });
+  // };
+
+  updateMovieInfo = (id) => {
+    // const user = this.state.currentUser;
+
+    // if ( user != null ) {
+    //   user.update({heart: !user.heart})
+    //   console.log(user.heart)
+    // }
+    if (this.state.currentUser != null) {
+      firebase.firestore()
+        .collection("users")
+        .doc(`${this.state.currentUser.id}`)
+
+        .update({ heart: !this.state.currentUser.heart, movieId: id });
+    } else {
+      console.log("no user is logged");
+    }
+    console.log(this.state.currentUser.heart);
   };
 
   render() {
@@ -371,7 +437,8 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           loadMore: this.loadMore,
           cleanState: this.cleanState,
           clearVisible: this.clearVisible,
-          refreshPage: this.refreshPage
+          refreshPage: this.refreshPage,
+          updateMovieInfo: this.updateMovieInfo
         }}
       >
         {this.props.children}

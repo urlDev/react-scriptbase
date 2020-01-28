@@ -34,7 +34,7 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
                 displayName,
                 email,
                 createdAt,
-                starCount: 0,
+                heart: false,
                 movieId: 0,
                 ...additionalData
             });
@@ -45,6 +45,10 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
 
     return userRef;
 };
+
+// export const movieInfo = () => {
+//     let ref = firebase.database().ref
+// }
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
