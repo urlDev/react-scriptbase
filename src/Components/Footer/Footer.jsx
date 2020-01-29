@@ -42,7 +42,7 @@ class Footer extends Component {
 
                     {/* <h1>ScriptBase</h1> */}
                   </Col>
-                  <Col className="pr-0 d-none d-md-block">
+                  <Col className="pr-0 d-none d-lg-block">
                     <img
                       src={
                         value.pageRefreshed
@@ -66,6 +66,9 @@ class Footer extends Component {
                         </em>
                       </h1>
                     )}
+                  </Col>
+                  <Col className=" pl-5 d-block d-lg-none">
+                    <a href="https://www.themoviedb.org/"><img src={require("../../Assets/tmdb.svg")} style={{width:"8em", marginTop:"4.5em"}} className="float-right" alt=""/></a>
                   </Col>
                 </Row>
               </Container>

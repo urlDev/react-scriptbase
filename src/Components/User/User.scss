@@ -18,7 +18,6 @@
         }
     }
     .userText {
-        float: right;
         color: $blue;
         text-decoration: none;
         font-size: 3em;
@@ -41,6 +40,162 @@
         transition: all 0.3s linear;
         &:hover {
             transform: scale(1.2);
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width:750px) {
+    .User {
+        padding-bottom: 30em;
+        padding-left: 5em;
+        .firstRow {
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            .userTitle {
+                float: left;
+                letter-spacing: 0.2em;
+                font-family: $primary-font;
+                font-size: 4em;
+                color: $yellow;
+                text-transform: uppercase;
+                text-shadow: 2px 2px $blue;
+                font-weight: bold;
+                // margin: 0 auto;
+            }
+        }
+        .userText {
+            color: $blue;
+            text-decoration: none;
+            font-size: 3em;
+            text-transform: capitalize;
+            font-family: $primary-font;
+            // margin-top: 0.7em;
+        }
+        .userImg {
+            width: 10em;
+        }
+        .hearts {
+            position: absolute;
+            top: 70%;
+            left: 45%;
+            background: $yellow;
+            color: $white;
+            font-size: 2em;
+            width: 2em;
+            height: 2em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2em;
+            transition: all 0.3s linear;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+@media (min-width: 751px) and (max-width:999.8px) {
+    .User {
+        padding-bottom: 30em;
+        padding-left: 5em;
+        .firstRow {
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            .userTitle {
+                float: left;
+                letter-spacing: 0.2em;
+                font-family: $primary-font;
+                font-size: 4em;
+                color: $yellow;
+                text-transform: uppercase;
+                text-shadow: 2px 2px $blue;
+                font-weight: bold;
+                // margin: 0 auto;
+            }
+        }
+        .userText {
+            color: $blue;
+            text-decoration: none;
+            font-size: 3em;
+            text-transform: capitalize;
+            font-family: $primary-font;
+            // margin-top: 0.7em;
+        }
+        .userImg {
+            width: 15em;
+        }
+        .hearts {
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            background: $yellow;
+            color: $white;
+            font-size: 2em;
+            width: 2em;
+            height: 2em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2em;
+            transition: all 0.3s linear;
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+}
+
+@media (min-width: 999.99px) and (max-width:2000px) {
+    .User {
+        padding-bottom: 30em;
+        padding-left: 5em;
+        .firstRow {
+            padding: 2em;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            .userTitle {
+                float: left;
+                letter-spacing: 0.2em;
+                font-family: $primary-font;
+                font-size: 5em;
+                color: $yellow;
+                text-transform: uppercase;
+                text-shadow: 2px 2px $blue;
+                font-weight: bold;
+                // margin: 0 auto;
+            }
+        }
+        .userText {
+            color: $blue;
+            text-decoration: none;
+            font-size: 3em;
+            text-transform: capitalize;
+            font-family: $primary-font;
+            // margin-top: 0.7em;
+        }
+        .userImg {
+            width: 20em;
+        }
+        .hearts {
+            position: absolute;
+            top: 70%;
+            left: 45%;
+            background: $yellow;
+            color: $white;
+            font-size: 2em;
+            width: 2em;
+            height: 2em;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 2em;
+            transition: all 0.3s linear;
+            &:hover {
+                transform: scale(1.2);
+            }
         }
     }
 }

@@ -73,3 +73,18 @@
         }
     }
 }
+
+@media (min-width: 300px) and (max-width:991.98px) {
+    .MoviesComing {
+        .card {
+            width: 12em;
+            .voteAverage {
+                top: 80%;
+            }
+            .hearts {
+                top: 80%;
+                left: 67%;
+            }
+        }
+    }
+}

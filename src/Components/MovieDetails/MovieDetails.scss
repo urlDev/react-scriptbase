@@ -226,3 +226,101 @@
         font-weight: bold;
     }
 }
+
+@media (min-width: 300px) and (max-width:524px) {
+    .Details {
+        .firstImg {
+            height: 30vh;
+            width: 100%;
+        }
+        .row {
+            .col {
+                img {
+                    width: 20em;
+                    margin-bottom: 2em;
+                }
+                .hearts {
+                    position: absolute;
+                    top: 70%;
+                    left: 57%;
+                    background: $yellow;
+                    color: $white;
+                    font-size: 3em;
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    text-align: center;
+                    line-height: 2em;
+                    transition: all 0.3s linear;
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+            .col {
+                .row {
+                    p {
+                        padding: 1em;
+                        font-size: 2em;
+                        font-family: $third-font;
+                        text-align: left;
+                        color: $blue;
+                    }
+                }
+            }
+        }
+        .row {
+            padding: 1.5em;
+            .col {
+                p {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        .row {
+            .card {
+                width: 10em !important;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) and (max-width:992px) {
+    .Details {
+        .firstImg {
+            height: 30vh;
+            width: 100%;
+        }
+        .row {
+            .col {
+                .hearts {
+                    position: absolute;
+                    top: 50%;
+                    left: 65%;
+                }
+            }
+        }
+        .row {
+            padding: 1.5em;
+            .col {
+                p {
+                    font-size: 1.5em;
+                }
+            }
+        }
+        .row {
+            .card {
+                width: 10em !important;
+            }
+        }
+    }
+}
+
+@media (min-width: 993px) and (max-width:1100px) {
+    .Details {
+        .firstImg {
+            height: 50vh;
+            width: 100%;
+        }
+    }
+}

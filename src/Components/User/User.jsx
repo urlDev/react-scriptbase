@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { MovieConsumer } from "../../Context";
-import { Navbar, Nav, Image, Container, Row, Col } from "react-bootstrap";
+import {  Container, Row, Col } from "react-bootstrap";
 
 import "./User.scss";
 
@@ -24,7 +24,6 @@ class User extends Component {
                     <hr className="mr-5" style={{ width:"calc(100% - 3rem)"}}/>
                   </Row>
                   <Row>
-                  {/* <h1 className="userText" >your favorite movies: </h1> */}
                   
                     {value.favorite.length > 0 ? (
                       value.favorite.map(movie => {
@@ -36,7 +35,7 @@ class User extends Component {
                           
                             <img
                               src={`https://image.tmdb.org/t/p/original/${movie}`}
-                              className="card-img"
+                              className="userImg"
                               alt={movie}
                               // style={{ width:"20em"}}
                             />
@@ -69,7 +68,7 @@ class User extends Component {
                   </Row>
                 </div>
               ) : (
-                <h1>You need to sign in to view data</h1>
+                <h1 className="userText mt-5">You need to sign in to view data</h1>
               )}
             </Container>
           );
@@ -80,21 +79,3 @@ class User extends Component {
 }
 
 export default User;
-
-// {value.favorite.map(movie =>  {
-//                     return (
-//                         <Col key={movie}>
-{
-  /* <img
-                                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                                className="card-img"
-                                alt={movie.title}
-                                style={{ width:"20em"}}
-                              /> */
-}
-//                         <h1 key={movie} onClick={() => value.handleClick(movie)}>
-//                         {value.details ? value.details.title : "movie has not been searched"}
-//                         </h1>
-//                         </Col>
-//                     )
-//                 })}

@@ -36,3 +36,13 @@
         }
     }
 }
+
+@media (min-width: 300px) and (max-width:779px) {
+    .form {
+        position: absolute;
+        &-inline {
+            padding-top: 3em;
+            margin-bottom: 1em;
+        }
+    }
+}

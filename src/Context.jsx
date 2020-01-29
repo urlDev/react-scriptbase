@@ -51,6 +51,7 @@ class MovieProvider extends Component {
     // this.getCast();
     this.handleClick();
     this.searchMovie();
+    this.clearSearch();
   
 
     // set the currentusers state as signed in user with google

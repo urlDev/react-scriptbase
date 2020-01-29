@@ -75,6 +75,96 @@
     }
 }
 
+@media (min-width: 300px) and (max-width:779px) {
+    .Modal {
+        width: 80%;
+        position: absolute;
+        top: 11em;
+        left: 10%;
+        right: 0;
+        bottom: 0;
+        // background: rgba(0, 0, 0, 0.3);
+        z-index: 3000;
+        margin-left: -2em;
+        .container {
+            max-height: 50vh;
+            margin-top: 8em;
+            padding: 0;
+            background: $white;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            .swiper-container {
+                max-height: 50vh;
+            }
+            .row {
+                .col {
+                    padding-right: 0;
+                    img {
+                        width: 7em;
+                        border: 1px solid $yellow;
+                    }
+                    .modalTitle {
+                        color: $blue;
+                        position: absolute;
+                        text-decoration: none;
+                        font-size: 2em;
+                        font-weight: bold;
+                        font-family: $primary-font;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 780px) and (max-width:991.99px) {
+    .Modal {
+        width: 80%;
+        position: absolute;
+        top: 5em;
+        left: 10%;
+        right: 0;
+        bottom: 0;
+        // background: rgba(0, 0, 0, 0.3);
+        z-index: 3000;
+        margin-left: -2em;
+        .container {
+            max-height: 50vh;
+            margin-top: 8em;
+            padding: 0;
+            background: $white;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            .swiper-container {
+                max-height: 50vh;
+            }
+            .row {
+                .col {
+                    padding-right: 0;
+                    img {
+                        width: 7em;
+                        border: 1px solid $yellow;
+                    }
+                    .modalTitle {
+                        color: $blue;
+                        position: absolute;
+                        text-decoration: none;
+                        font-size: 2em;
+                        font-weight: bold;
+                        font-family: $primary-font;
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 ::-webkit-scrollbar {
     width: 1.5em;
 }

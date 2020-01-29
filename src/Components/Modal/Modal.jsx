@@ -66,7 +66,7 @@ class Modal extends Component {
                                   .join("-")}`
                               : "Release Date Unknown"}</h1> */}
                           </Col>
-                          <Col className="col-md-2">
+                          <Col className="col-md-2 d-none d-lg-block" >
                             <h1 className="average card-text">
                               {vote_average}
                             </h1>{" "}

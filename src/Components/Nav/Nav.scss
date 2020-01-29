@@ -21,8 +21,8 @@
         //     background: $white;
         // }
         &-toggler {
-            height: 2em;
-            font-size: 2rem;
+            // height: 2em;
+            font-size: 4em;
             color: $red;
             border: none;
             transition: all 0.5s ease-in-out;
@@ -30,9 +30,9 @@
             &:active {
                 outline: none !important;
             }
-            &:hover {
-                background: rgb(224, 224, 224);
-            }
+            // &:hover {
+            //     background: rgb(224, 224, 224);
+            // }
         }
         .container {
             // border: 1px solid $white;
@@ -71,6 +71,36 @@
         }
         &-collapse {
             margin: 0 auto;
+        }
+    }
+}
+
+@media (min-width: 300px) and (max-width:991.98px) {
+    .NavTop {
+        .navbar {
+            &-toggler {
+                // height: 2em;
+                font-size: 4em;
+            }
+            &-nav {
+                .nav-link {
+                    position: absolute;
+                    top: 50%;
+                    padding-right: 1em !important;
+                }
+                .userSign {
+                    width: 8em;
+                    position: absolute;
+                    left: 230%;
+                    // margin-bottom: 10em;
+                    .fa-user-astronaut {
+                        float: right;
+                        color: $yellow;
+                        font-size: 1.5em;
+                        margin-top: 0.05em;
+                    }
+                }
+            }
         }
     }
 }

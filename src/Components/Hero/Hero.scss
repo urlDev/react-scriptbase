@@ -33,55 +33,46 @@
                 }
             }
         }
-        // .swiper-button-next,
-        // .swiper-button-prev,
-        // .swiper-notification {
-        //     height: 3em;
-        //     z-index: 4;
-        //     display: block;
-        //     color: $blue;
-        // }
     }
 }
 
-// .carousel {
-//     &-inner {
-//         
-//     }
-//     &-indicators {
-//         position: absolute;
-//         top: 85%;
-//     }
-//     &-item {
-//         height: 80vh;
-//         display: block;
-//         float: none;
-//         img {
-//             height: 80vh;
-//             max-width: 100%;
-//             position: absolute;
-//             top: 50%;
-//             left: 50%;
-//             transform: translate(-50%, -50%);
-//         }
-//     }
-//     &-caption {
-//         text-align: left;
-//         position: absolute;
-//         top: 42%;
-//         width: 70em;
-//         height: 10em;
-//         h3 {
-//             font-family: $primary-font;
-//             font-size: 5em;
-//             text-shadow: 2px 2px $blue;
-//             font-weight: bold;
-//             letter-spacing: 0.1em;
-//             text-transform: uppercase;
-//             color: $white;
-//         }
-//         p {
-//             color: $white;
-//         }
-//     }
-// }
+@media (min-width: 300px) and (max-width:750px) {
+    .Hero {
+        .swiper-container {
+            .swiper-wrapper {
+                .swiper-slide {
+                    img {
+                        height: 30vh;
+                        width: 100%;
+                    }
+                    .carousel-caption {
+                        position: absolute;
+                        left: 8%;
+                        font-size: 2em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 750px) and (max-width:1100px) {
+    .Hero {
+        position: relative;
+        .swiper-container {
+            .swiper-wrapper {
+                .swiper-slide {
+                    img {
+                        height: 50vh;
+                        width: 100%;
+                    }
+                    .carousel-caption {
+                        position: absolute;
+                        left: 6%;
+                        font-size: 3em;
+                    }
+                }
+            }
+        }
+    }
+}

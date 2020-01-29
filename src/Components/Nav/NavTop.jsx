@@ -13,7 +13,7 @@ class NavTop extends Component {
         {value => {
           return (
             <div className="NavTop">
-              <Navbar>
+              <Navbar expand="lg">
                 <Link
                   to="/"
                   className="navbar-brand"
@@ -21,19 +21,21 @@ class NavTop extends Component {
                     value.clearVisible();
                     value.getPopular();
                     value.refreshPage();
+                    value.clearSearch();
                   }}
                 >
                   <Image src={require("../../logo.png")}></Image>
                 </Link>
-                <Container>
-                  <Search />
-                </Container>
+                
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav">
-                  <span>MENU</span>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" className="mb-2">
+                  {/* <span>MENU</span> */}
                   <i className="fas fa-film"></i>{" "}
                 </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav" className="">
+                <Container>
+                  <Search />
+                </Container>
                   <Nav className="flex-row d-flex">
                     <Link
                       to="/"
@@ -63,7 +65,7 @@ class NavTop extends Component {
                           </div>
                         </div>
                       ) : (
-                        <div>Sign in</div>
+                        <div className="userSign">Sign in</div>
                       )}
                     </Link>
                   </Nav>
