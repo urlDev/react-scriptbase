@@ -38,7 +38,8 @@ class MovieDetails extends Component {
             runtime,
             backdrop_path,
             budget,
-            tagline
+            tagline,
+            id
           } = value.details;
           // let newStr = release_date;
           return (
@@ -52,11 +53,22 @@ class MovieDetails extends Component {
               <Container className="mt-5 p-0">
                 <Row>
                   <Col className="firstCol ml-2">
+                    <div>
                     <img
                       src={`https://image.tmdb.org/t/p/original/${poster_path}`}
                       alt=""
                       className=""
                     />
+                    </div>
+                    <div className="">
+                              <h6
+                                className="card-title hearts"
+                                onClick={() => value.addFavorite(poster_path)}
+                              >
+                              {value.favorite.includes(poster_path) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>}
+                                
+                              </h6>
+                            </div>
                   </Col>
 
                   <Col>

@@ -47,8 +47,24 @@ class NavTop extends Component {
                       Home
                     </Link>
                     <Link to="/signin" className="pl-4 pr-5 nav-link">
-                     {/* if currentUser has a user, it will return true. If its null(initial state) it will return false(null is falsy value) */}
-								{ value.currentUser ? <div onClick={() => auth.signOut()} className="signOut">Sign Out</div> : <div>Sign In</div> }
+                      {/* if currentUser has a user, it will return true. If its null(initial state) it will return false(null is falsy value) */}
+                      {value.currentUser ? (
+                        <div className="userSign">
+                          <div
+                            onClick={() => auth.signOut()}
+                            className="signOut"
+                          >
+                            Sign Out
+                          </div>
+                          <div>
+                            <Link to="/user">
+                              <i className="fas fa-user-astronaut"></i>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>Sign in</div>
+                      )}
                     </Link>
                   </Nav>
                 </Navbar.Collapse>

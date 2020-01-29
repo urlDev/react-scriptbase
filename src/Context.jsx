@@ -3,11 +3,9 @@ import { TMDB_KEY } from "./config.js";
 import axios from "axios";
 import {
   auth,
-  createUserProfileDocument,
-  firestore
+  createUserProfileDocument
 } from "../src/Components/Firebase/firebase.utils.js";
 
-import firebase from "firebase/app";
 
 const MovieContext = React.createContext();
 
@@ -35,15 +33,14 @@ class MovieProvider extends Component {
       visible: 10,
       pageRefreshed: false,
       currentUser: null,
-      favorite: []
+      favorite: [],
     };
   }
 
   //we need this to sign out, currently user is not signed out
   unsubscribeFromAuth = null;
 
-  componentDidMount = () =>  {
-    
+  componentDidMount = () => {
     this.getTrending();
     this.getPopular();
     this.cleanState();
@@ -54,40 +51,32 @@ class MovieProvider extends Component {
     // this.getCast();
     this.handleClick();
     this.searchMovie();
-    
+  
 
     // set the currentusers state as signed in user with google
     //userAuth comes from firebase
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       //if userAuth exists(have any value besides null)
-      
       if (userAuth) {
         //userRef is waiting for the function we created in firebase utils that created a snapshot, which takes userAuth as value
         const userRef = await createUserProfileDocument(userAuth);
 
-       
-
         userRef.onSnapshot(snapShot => {
-          
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data()
-              }
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data()
             }
-          );
+          });
         });
       } else {
-        
         //if user logs out then state will be userAuth(if theres no userAuth then its null)
         this.setState({
           currentUser: userAuth
         });
       }
     });
-    
-  }
+  };
 
   //this is how user will sign out
   componentWillUnmount() {
@@ -210,7 +199,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
           genres: apiResponse.genres,
           companies: apiResponse.production_companies,
           countries: apiResponse.production_countries
-        });
+        }, () => console.log(apiResponse));
       })
       .catch(error => {
         console.log(error);
@@ -286,7 +275,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
 
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
-  handleClick = id => {
+  handleClick = (id, movie) => {
     // console.log(id);
     this.setState(
       {
@@ -363,37 +352,57 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
+  /******************************/
 
+  // first tried firebase and was able to update data in firestore. but rather use state
 
-//https://stackoverflow.com/questions/55316841/how-to-update-value-of-countjs-with-react-and-firebase
-//how to update data in firebase
-//https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
-  updateMovieInfo = (id) => {
-    // const user = this.state.currentUser;
+  //https://stackoverflow.com/questions/55316841/how-to-update-value-of-countjs-with-react-and-firebase
+  //how to update data in firebase
+  //https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
+  // updateMovieInfo = id => {
+  // const user = this.state.currentUser;
 
-    // if ( user != null ) {
-    //   user.update({heart: !user.heart})
-    //   console.log(user.heart)
-    // }
-    if (this.state.currentUser != null) {
-      firebase.firestore()
-        .collection("users")
-        .doc(`${this.state.currentUser.id}`)
+  // if ( user != null ) {
+  //   user.update({heart: !user.heart})
+  //   console.log(user.heart)
+  // }
+  //   if (this.state.currentUser != null) {
+  //     firebase
+  //       .firestore()
+  //       .collection("users")
+  //       .doc(`${this.state.currentUser.id}`)
 
-        .update({ heart: !this.state.currentUser.heart, movieId: id });
+  //       .update({ heart: !this.state.currentUser.heart, movieId: id });
+  //   } else {
+  //     console.log("no user is logged");
+  //   }
+  //   console.log(this.state.currentUser.heart);
+  // };
+
+  /**********************************/
+
+  //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
+
+  //no need to use firebase for this, can store in state/local storage
+  //https://stackoverflow.com/questions/51013553/react-adding-classname-to-single-element-of-mapped-array
+
+  addFavorite = (poster_path) => {
+    const { favorite } = this.state;
+    let copyFavorites = [...favorite];
+    // let eachMovie = {id:id, title:title, poster_path:poster_path};
+    //if it doesnt include, add
+    if (!favorite.includes(poster_path)) {
+      copyFavorites.push(poster_path);
+      this.setState({ favorite: copyFavorites }, () =>
+        console.log(this.state.favorite)
+      );
+      //if it includes, remove
+      //https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
     } else {
-      console.log("no user is logged");
-    }
-    console.log(this.state.currentUser.heart);
-  };
-
-  addFavorite = id => {
-    const { popular, favorite } = this.state;
-    const copyFavorites = [...favorite];
-
-    if (!favorite.includes(id)) {
-      copyFavorites.push(id);
-      this.setState({ favorite: copyFavorites }, () => console.log(this.state.favorite));
+      copyFavorites = copyFavorites.filter(movie => movie !== poster_path);
+      this.setState({ favorite: copyFavorites }, () =>
+        console.log(this.state.favorite)
+      );
     }
   };
 

@@ -11,6 +11,23 @@
                 width: 30em;
                 margin-bottom: 2em;
             }
+            .hearts {
+                position: absolute;
+                top: 78%;
+                left: 60%;
+                background: $yellow;
+                color: $white;
+                font-size: 3em;
+                width: 2em;
+                height: 2em;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 2em;
+                transition: all 0.3s linear;
+                &:hover {
+                    transform: scale(1.2);
+                }
+            }
         }
         .col {
             .row {

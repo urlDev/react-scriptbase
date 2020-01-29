@@ -50,8 +50,23 @@
                     color: $blue;
                 }
             }
-            .signOut {
-                color: $yellow;
+            .userSign {
+                width: 8em;
+                .signOut {
+                    color: $yellow;
+                    float: left;
+                }
+                .fa-user-astronaut {
+                    float: right;
+                    color: $yellow;
+                    font-size: 2em;
+                    margin-top: -0.2em;
+                    margin-left: 0.5em;
+                    transition: all 0.5s ease-in-out;
+                    &:hover {
+                        color: $blue;
+                    }
+                }
             }
         }
         &-collapse {

@@ -42,9 +42,9 @@ class MoviesPopular extends Component {
                             <div className="">
                               <h6
                                 className="card-title hearts"
-                                onClick={() => value.addFavorite(i.id)}
+                                onClick={() => value.addFavorite(i.poster_path)}
                               >
-                              {value.favorite.includes(i.id) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>}
+                              {value.favorite.includes(i.poster_path) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>}
                                 
                               </h6>
                             </div>
