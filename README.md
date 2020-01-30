@@ -1,4 +1,4 @@
-# Scriptbase
+# Scriptbase :movie_camera:
 
 # A Movie Database made with React and TMDB API
 
