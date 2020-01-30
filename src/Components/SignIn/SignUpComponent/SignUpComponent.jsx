@@ -8,7 +8,7 @@ class SignUpComponent extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			firstName: '',
+			displayName: '',
 			lastName: '',
 			email: '',
 			password: ''
@@ -18,18 +18,18 @@ class SignUpComponent extends Component {
 	handleSubmit = async (e) => {
 		e.preventDefault();
 
-         const { firstName, email, password } = this.state;
+         const { displayName, email, password } = this.state;
 
 		try {
 			//user is what we create with email and password with creating user function, and giving it auth
 			const { user } = await auth.createUserWithEmailAndPassword(email, password);
 
 			//wait for function to create a user with firstName
-			await createUserProfileDocument(user, { firstName });
+			await createUserProfileDocument(user, { displayName });
 
 			//once its done, set states to initial
 			this.setState({
-				firstName: '',
+				displayName: '',
 				lastName: '',
 				email: '',
 				password: ''
@@ -46,7 +46,7 @@ class SignUpComponent extends Component {
 	};
 
 	render() {
-		const { firstName, lastName, email, password } = this.state;
+		const { displayName, lastName, email, password } = this.state;
 		return (
 			<Col className="mt-5 signUpComponent" sm={12} md={6}>
 				<h1 className="signUpTitle">I don't have an account</h1>
@@ -56,8 +56,8 @@ class SignUpComponent extends Component {
 						<Form.Label>First Name</Form.Label>
 						<Form.Control
 							onChange={this.handleChange}
-							value={firstName}
-							name="firstName"
+							value={displayName}
+							name="displayName"
 							type="text"
 							placeholder="First name"
 							className="form-control"

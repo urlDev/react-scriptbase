@@ -63,7 +63,7 @@ class User extends Component {
                         );
                       })
                     ) : (
-                      <h1 className="userText">no movies added to favorites</h1>
+                      <h1 className="userText ml-4">no movies added to favorites</h1>
                     )}
                   </Row>
                 </div>
