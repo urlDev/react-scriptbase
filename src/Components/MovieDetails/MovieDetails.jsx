@@ -23,6 +23,7 @@ class MovieDetails extends Component {
     this.state = {};
   }
 
+
   render() {
     return (
       <MovieConsumer>

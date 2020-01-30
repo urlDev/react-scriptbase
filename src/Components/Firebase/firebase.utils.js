@@ -34,8 +34,6 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
                 displayName,
                 email,
                 createdAt,
-                heart: false,
-                movieId: 0,
                 ...additionalData
             });
         } catch (error) {

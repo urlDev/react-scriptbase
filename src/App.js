@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import NavTop from "./Components/Nav/NavTop.jsx";
 import Home from "./Components/Home/Home.jsx";
 import MovieDetails from "./Components/MovieDetails/MovieDetails.jsx";
@@ -11,10 +11,11 @@ import { Switch, Route } from "react-router-dom";
 
 import "./App.scss";
 
-function App() {
+class App extends Component {
 
-  return (
-    <div className="App">
+  render() {
+    return (
+      <div className="App">
       <NavTop />
       <Switch>
         <Route path="/signin" component={SignIn}/>
@@ -25,7 +26,8 @@ function App() {
       <Modal/>
       <Footer/>
     </div>
-  );
+    );
+  }
 }
 
 export default App;

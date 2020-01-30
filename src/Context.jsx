@@ -6,7 +6,6 @@ import {
   createUserProfileDocument
 } from "../src/Components/Firebase/firebase.utils.js";
 
-
 const MovieContext = React.createContext();
 
 class MovieProvider extends Component {
@@ -27,13 +26,19 @@ class MovieProvider extends Component {
       countries: [],
       similar: [],
       videos: [],
+      //there are two different arrays for searching movies
+      //first is to fetch, second is to search and see results
       movies: [],
       moviesResult: [],
+      //modal is closed at first, after state is true, component will show
       modalOpen: false,
+      //number of movies that will be visible at first in homepage
       visible: 10,
+      //state to understand if page is refreshed
       pageRefreshed: false,
       currentUser: null,
-      favorite: [],
+      //favorite movies array to store favorite movies
+      favorite: []
     };
   }
 
@@ -52,7 +57,6 @@ class MovieProvider extends Component {
     this.handleClick();
     this.searchMovie();
     this.clearSearch();
-  
 
     // set the currentusers state as signed in user with google
     //userAuth comes from firebase
@@ -195,17 +199,21 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       .then(response => {
         const apiResponse = response.data;
         // console.log(this.state.id);
-        this.setState({
-          details: apiResponse,
-          genres: apiResponse.genres,
-          companies: apiResponse.production_companies,
-          countries: apiResponse.production_countries
-        }, () => console.log(apiResponse));
+        this.setState(
+          {
+            details: apiResponse,
+            genres: apiResponse.genres,
+            companies: apiResponse.production_companies,
+            countries: apiResponse.production_countries
+          },
+          () => console.log(apiResponse)
+        );
       })
       .catch(error => {
         console.log(error);
       });
   };
+
   getCast = () => {
     axios
       .get(
@@ -257,6 +265,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
       });
   };
 
+  //search from movies state, store to moviesResult array in state
   searchMovie = () => {
     axios
       .get(
@@ -308,6 +317,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   handleSubmit = e => {
     e.preventDefault();
     this.searchMovie();
+    //.reset() to reset searchbar
     e.target.reset();
   };
 
@@ -347,6 +357,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
+  //using !this.state.pageRefreshed so pageRefreshed would always be opposite of it, on every click
   refreshPage = () => {
     this.setState({
       pageRefreshed: !this.state.pageRefreshed
@@ -387,23 +398,21 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   //no need to use firebase for this, can store in state/local storage
   //https://stackoverflow.com/questions/51013553/react-adding-classname-to-single-element-of-mapped-array
 
-  addFavorite = (poster_path) => {
+  //I didnt use nested arrays or object within array here because deleting favorited movie became complicated then
+  //So i chose to save poster_paths only
+  addFavorite = poster_path => {
     const { favorite } = this.state;
     let copyFavorites = [...favorite];
     // let eachMovie = {id:id, title:title, poster_path:poster_path};
     //if it doesnt include, add
     if (!favorite.includes(poster_path)) {
       copyFavorites.push(poster_path);
-      this.setState({ favorite: copyFavorites }, () =>
-        console.log(this.state.favorite)
-      );
+      this.setState({ favorite: copyFavorites });
       //if it includes, remove
       //https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
     } else {
       copyFavorites = copyFavorites.filter(movie => movie !== poster_path);
-      this.setState({ favorite: copyFavorites }, () =>
-        console.log(this.state.favorite)
-      );
+      this.setState({ favorite: copyFavorites });
     }
   };
 
