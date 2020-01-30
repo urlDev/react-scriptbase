@@ -5,6 +5,7 @@ import {
   auth,
   createUserProfileDocument
 } from "../src/Components/Firebase/firebase.utils.js";
+import { Persist } from 'react-persist'
 
 const MovieContext = React.createContext();
 
@@ -443,6 +444,12 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         }}
       >
         {this.props.children}
+        <Persist 
+          name="movies" 
+          data={this.state} 
+          debounce={500} 
+          onMount={data => this.setState(data)}
+        />
       </MovieContext.Provider>
     );
   }
