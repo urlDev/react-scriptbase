@@ -169,32 +169,35 @@
                 // margin: 0 auto;
             }
         }
-        .userText {
-            color: $blue;
-            text-decoration: none;
-            font-size: 3em;
-            text-transform: capitalize;
-            font-family: $primary-font;
-            // margin-top: 0.7em;
-        }
-        .userImg {
-            width: 20em;
-        }
-        .hearts {
-            position: absolute;
-            top: 80%;
-            left: 60%;
-            background: $yellow;
-            color: $white;
-            font-size: 2em;
-            width: 2em;
-            height: 2em;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 2em;
-            transition: all 0.3s linear;
-            &:hover {
-                transform: scale(1.2);
+        .col {
+            position: relative;
+            .userText {
+                color: $blue;
+                text-decoration: none;
+                font-size: 3em;
+                text-transform: capitalize;
+                font-family: $primary-font;
+                // margin-top: 0.7em;
+            }
+            .userImg {
+                width: 20em;
+            }
+            .hearts {
+                position: absolute;
+                top: 80%;
+                left: 60%;
+                background: $yellow;
+                color: $white;
+                font-size: 2em;
+                width: 2em;
+                height: 2em;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 2em;
+                transition: all 0.3s linear;
+                &:hover {
+                    transform: scale(1.2);
+                }
             }
         }
     }
