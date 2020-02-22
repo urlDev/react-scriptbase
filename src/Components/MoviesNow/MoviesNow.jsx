@@ -4,12 +4,11 @@ import { MovieConsumer } from "../../Context";
 
 import { Link } from "react-router-dom";
 
-import "./MoviesNow.scss";
 
 class MoviesNow extends Component {
   render() {
     return (
-      <Container className="MoviesNow mt-3">
+      <Container className="homePageMovies mt-3">
         <Row>
           <Col>
             <MovieConsumer>
@@ -45,8 +44,31 @@ class MoviesNow extends Component {
                                 className="card-title hearts"
                                 onClick={() => value.addFavorite(i.poster_path)}
                               >
-                              {value.currentUser ?  (value.favorite.includes(i.poster_path) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>) : <Link to="/signin" style={{color:"#FDFFFC"}}> <i className="fa fa-heart" aria-hidden="true"></i> </Link>}
-                                
+                                {value.currentUser ? (
+                                  value.favorite.includes(i.poster_path) ? (
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                      style={{ color: "red" }}
+                                    ></i>
+                                  ) : (
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                    ></i>
+                                  )
+                                ) : (
+                                  <Link
+                                    to="/signin"
+                                    style={{ color: "#FDFFFC" }}
+                                  >
+                                    {" "}
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                    ></i>{" "}
+                                  </Link>
+                                )}
                               </h6>
                             </div>
                           </div>

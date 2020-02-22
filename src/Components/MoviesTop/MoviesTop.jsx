@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
-import { Link } from "react-router-dom";
 
-import "./MoviesTop.scss";
+import { Link } from "react-router-dom";
 
 class MoviesTop extends Component {
   render() {
     return (
-      <Container className="MoviesTop mt-3 ">
+      <Container className="homePageMovies mt-3 ">
         <Row>
           <Col>
             <MovieConsumer>

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
-import { Link } from "react-router-dom";
+import LoadMore from "../LoadMore/LoadMore"
 
-import "./MoviesComing.scss";
+import { Link } from "react-router-dom";
 
 class MoviesComing extends Component {
   render() {
     return (
-      <Container className="MoviesComing mt-3">
+      <Container className="homePageMovies mt-3">
         <Row>
           <Col>
             <MovieConsumer>
@@ -44,26 +44,37 @@ class MoviesComing extends Component {
                                 className="card-title hearts"
                                 onClick={() => value.addFavorite(i.poster_path)}
                               >
-                              {value.currentUser ?  (value.favorite.includes(i.poster_path) ?  <i className="fa fa-heart" aria-hidden="true" style={{ color:"red"}}></i> : <i className="fa fa-heart" aria-hidden="true"></i>) : <Link to="/signin" style={{color:"#FDFFFC"}}> <i className="fa fa-heart" aria-hidden="true"></i> </Link>}
-                                
+                                {value.currentUser ? (
+                                  value.favorite.includes(i.poster_path) ? (
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                      style={{ color: "red" }}
+                                    ></i>
+                                  ) : (
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                    ></i>
+                                  )
+                                ) : (
+                                  <Link
+                                    to="/signin"
+                                    style={{ color: "#FDFFFC" }}
+                                  >
+                                    <i
+                                      className="fa fa-heart"
+                                      aria-hidden="true"
+                                    ></i>
+                                  </Link>
+                                )}
                               </h6>
                             </div>
                           </div>
                         );
                       })}
                     </div>
-                    <div>
-                      {/* if value visible is smaller than popular.length then add button */}
-                      {value.visible < value.coming.length && (
-                        <button
-                          onClick={value.loadMore}
-                          type="button"
-                          className="load-more"
-                        >
-                          Load more
-                        </button>
-                      )}
-                    </div>
+                    <LoadMore/>
                   </div>
                 );
               }}
