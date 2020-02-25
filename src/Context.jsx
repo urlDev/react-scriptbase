@@ -50,11 +50,6 @@ class MovieProvider extends Component {
     this.getTrending();
     this.getPopular();
     this.cleanState();
-    // this.getNow();
-    // this.getComing();
-    // this.getTop();
-    // this.getDetails();
-    // this.getCast();
     this.handleClick();
     this.searchMovie();
     this.clearSearch();
@@ -286,8 +281,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
 
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
-  handleClick = (id, movie) => {
-    // console.log(id);
+  handleClick = (id) => {
     this.setState(
       {
         id: id
@@ -309,7 +303,6 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         movies: e.target.value
       },
       () => {
-        // console.log(this.state.movies);
         this.searchMovie();
       }
     );
@@ -365,46 +358,9 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
-  /******************************/
-
-  // first tried firebase and was able to update data in firestore. but rather use state
-
-  //https://stackoverflow.com/questions/55316841/how-to-update-value-of-countjs-with-react-and-firebase
-  //how to update data in firebase
-  //https://medium.com/@aaron_lu1/firebase-cloud-firestore-add-set-update-delete-get-data-6da566513b1b
-  // updateMovieInfo = id => {
-  // const user = this.state.currentUser;
-
-  // if ( user != null ) {
-  //   user.update({heart: !user.heart})
-  //   console.log(user.heart)
-  // }
-  //   if (this.state.currentUser != null) {
-  //     firebase
-  //       .firestore()
-  //       .collection("users")
-  //       .doc(`${this.state.currentUser.id}`)
-
-  //       .update({ heart: !this.state.currentUser.heart, movieId: id });
-  //   } else {
-  //     console.log("no user is logged");
-  //   }
-  //   console.log(this.state.currentUser.heart);
-  // };
-
-  /**********************************/
-
-  //https://medium.com/@hasangi/writing-deleting-and-updating-data-in-firebase-realtime-database-with-javascript-f26113ec8c93
-
-  //no need to use firebase for this, can store in state/local storage
-  //https://stackoverflow.com/questions/51013553/react-adding-classname-to-single-element-of-mapped-array
-
-  //I didnt use nested arrays or object within array here because deleting favorited movie became complicated then
-  //So i chose to save poster_paths only
   addFavorite = poster_path => {
     const { favorite } = this.state;
     let copyFavorites = [...favorite];
-    // let eachMovie = {id:id, title:title, poster_path:poster_path};
     //if it doesnt include, add
     if (!favorite.includes(poster_path)) {
       copyFavorites.push(poster_path);
