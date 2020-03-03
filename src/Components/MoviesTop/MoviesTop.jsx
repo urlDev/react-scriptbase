@@ -26,7 +26,7 @@ const MoviesTop = () => {
                             }}
                           >
                             <img
-                              src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
+                              src={`https://image.tmdb.org/t/p/w154${i.poster_path}`}
                               className="card-img"
                               alt={i.title}
                             />

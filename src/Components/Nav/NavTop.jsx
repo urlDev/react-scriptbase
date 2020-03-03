@@ -24,18 +24,20 @@ class NavTop extends Component {
                     value.clearSearch();
                   }}
                 >
-                  <Image src={require("../../logo.png")}></Image>
+                  <Image src={require("../../logo.png")} alt="ScriptBase brand logo" ></Image>
                 </Link>
-                
 
-                <Navbar.Toggle aria-controls="basic-navbar-nav" className="mb-2">
+                <Navbar.Toggle
+                  aria-controls="basic-navbar-nav"
+                  className="mb-2"
+                >
                   {/* <span>MENU</span> */}
-                  <i className="fas fa-film"></i>{" "}
+                  <i className="fas fa-film"></i>
                 </Navbar.Toggle>
                 <Navbar.Collapse id="basic-navbar-nav" className="">
-                <Container>
-                  <Search />
-                </Container>
+                  <Container>
+                    <Search />
+                  </Container>
                   <Nav className="flex-row d-flex">
                     <Link
                       to="/"

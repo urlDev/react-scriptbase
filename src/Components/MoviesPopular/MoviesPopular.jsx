@@ -26,7 +26,7 @@ const MoviesPopular = () => {
                             }}
                           >
                             <img
-                              src={`https://image.tmdb.org/t/p/original/${i.poster_path}`}
+                              src={`https://image.tmdb.org/t/p/w154${i.poster_path}`}
                               className="card-img"
                               alt={i.title}
                             />
@@ -56,12 +56,11 @@ const MoviesPopular = () => {
                                   ></i>
                                 )
                               ) : (
-                                <Link to="/signin" style={{ color: "#FDFFFC" }}>
-                                  {" "}
+                                <Link to="/signin" style={{ color: "#FDFFFC" }} alt="hearts">
                                   <i
                                     className="fa fa-heart"
                                     aria-hidden="true"
-                                  ></i>{" "}
+                                  ></i>
                                 </Link>
                               )}
                             </h6>
