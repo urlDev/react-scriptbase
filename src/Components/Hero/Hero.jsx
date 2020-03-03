@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { MovieConsumer } from "../../Context";
 import Swiper from "react-id-swiper";
@@ -25,38 +25,38 @@ const params = {
   // }
 };
 
-class Hero extends Component {
-  render() {
-    return (
-      <div className=" Hero">
-        <MovieConsumer>
-          {value => {
-            return (
-              <Swiper {...params}>
-                {value.trending.map(movie => {
-                  return (  
-                    <Link
-                      to={`${movie.id}`}
-                      key={movie.id}
-                      onClick={() => {value.handleClick(movie.id); value.refreshPage();}}
-                    >
-                      <img
-                        src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
-                        alt={movie.title}
-                        // style={{ height: "80vh", width:"100%" }}
-                      />
-                      <h1 className="carousel-caption">{movie.title}</h1>
-                    </Link>
-                  );
-                })}
-              </Swiper>
-            );
-          }}
-        </MovieConsumer>
-      </div>
-    );
-  }
-}
+const Hero = () => {
+  return (
+    <div className=" Hero">
+      <MovieConsumer>
+        {value => {
+          return (
+            <Swiper {...params}>
+              {value.trending.map(movie => {
+                return (
+                  <Link
+                    to={`${movie.id}`}
+                    key={movie.id}
+                    onClick={() => {
+                      value.handleClick(movie.id);
+                      value.refreshPage();
+                    }}
+                  >
+                    <img
+                      src={`https://image.tmdb.org/t/p/original/${movie.backdrop_path}`}
+                      alt={movie.title}
+                      // style={{ height: "80vh", width:"100%" }}
+                    />
+                    <h1 className="carousel-caption">{movie.title}</h1>
+                  </Link>
+                );
+              })}
+            </Swiper>
+          );
+        }}
+      </MovieConsumer>
+    </div>
+  );
+};
 
-export default Hero;
-
+export default React.memo(Hero);
