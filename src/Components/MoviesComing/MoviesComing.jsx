@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { MovieConsumer } from "../../Context";
 import LoadMore from "../LoadMore/LoadMore";
-
+import LazyLoad from "react-lazyload";
 import { Link } from "react-router-dom";
 
 const MoviesComing = () => {
@@ -26,11 +26,13 @@ const MoviesComing = () => {
                               value.refreshPage();
                             }}
                           >
-                            <img
-                              src={`https://image.tmdb.org/t/p/w154${i.poster_path}`}
-                              className="card-img"
-                              alt={i.title}
-                            />
+                            <LazyLoad>
+                              <img
+                                src={`https://image.tmdb.org/t/p/w154${i.poster_path}`}
+                                className="card-img"
+                                alt={i.title}
+                              />
+                            </LazyLoad>
                           </Link>
 
                           <div className="">

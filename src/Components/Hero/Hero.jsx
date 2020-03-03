@@ -3,7 +3,7 @@ import React from "react";
 import { MovieConsumer } from "../../Context";
 import Swiper from "react-id-swiper";
 import { Link } from "react-router-dom";
-
+import LazyLoad from "react-lazyload";
 
 import "./Hero.scss";
 import "swiper/swiper.scss";
@@ -43,11 +43,14 @@ const Hero = () => {
                       value.refreshPage();
                     }}
                   >
-                    <img
-                      src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
-                      alt={movie.title}
-                      // style={{ height: "80vh", width:"100%" }}
-                    />
+                    <LazyLoad>
+                      <img
+                        src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+                        alt={movie.title}
+                        // style={{ height: "80vh", width:"100%" }}
+                      />
+                    </LazyLoad>
+
                     <h1 className="carousel-caption">{movie.title}</h1>
                   </Link>
                 );
