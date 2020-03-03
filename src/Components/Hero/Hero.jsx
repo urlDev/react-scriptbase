@@ -4,6 +4,7 @@ import { MovieConsumer } from "../../Context";
 import Swiper from "react-id-swiper";
 import { Link } from "react-router-dom";
 
+
 import "./Hero.scss";
 import "swiper/swiper.scss";
 
@@ -43,7 +44,7 @@ const Hero = () => {
                     }}
                   >
                     <img
-                      src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                      src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
                       alt={movie.title}
                       // style={{ height: "80vh", width:"100%" }}
                     />
