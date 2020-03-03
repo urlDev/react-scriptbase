@@ -104,7 +104,7 @@ class MovieProvider extends Component {
         this.setState({
           trending: apiResponse.results
         });
-        // console.log(apiResponse.results);
+        console.log(apiResponse.results);
       })
       .catch(error => {
         console.log(error);
@@ -122,7 +122,7 @@ class MovieProvider extends Component {
         this.setState({
           popular: apiResponse.results
         });
-        // console.log(apiResponse.results);
+        console.log(apiResponse.results);
       })
       .catch(error => {
         console.log(error);
