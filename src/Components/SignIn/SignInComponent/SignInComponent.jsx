@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, Form } from 'react-bootstrap';
-import { auth, signInWithGoogle } from '../../Firebase/firebase.utils.js';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils.js';
 
 import "./SignInComponent.scss";
 

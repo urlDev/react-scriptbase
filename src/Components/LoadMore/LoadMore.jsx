@@ -1,26 +1,17 @@
-import React from "react";
-import { MovieConsumer } from "../../Context";
+import React, { useContext } from "react";
+import { MovieContext } from "../../Context";
 
 const LoadMore = () => {
+  const { visible, coming, loadMore } = useContext(MovieContext);
   return (
-    <MovieConsumer>
-      {value => {
-        return (
-          <div>
-            {/* if value visible is smaller than popular.length then add button */}
-            {value.visible < value.coming.length && (
-              <button
-                onClick={value.loadMore}
-                type="button"
-                className="load-more"
-              >
-                Load more
-              </button>
-            )}
-          </div>
-        );
-      }}
-    </MovieConsumer>
+    <div>
+      {/* if value visible is smaller than popular.length then add button */}
+      {visible < coming.length && (
+        <button onClick={loadMore} type="button" className="load-more">
+          Load more
+        </button>
+      )}
+    </div>
   );
 };
 

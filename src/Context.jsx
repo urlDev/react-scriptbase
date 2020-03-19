@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React, { Component, createContext } from "react";
 import { TMDB_KEY } from "./config.js";
 import axios from "axios";
 import {
   auth,
   createUserProfileDocument
-} from "../src/Components/Firebase/firebase.utils.js";
-import { Persist } from 'react-persist'
+} from "../src/components/firebase/firebase.utils.js";
+import { Persist } from "react-persist";
 
-const MovieContext = React.createContext();
+export const MovieContext = createContext();
 
-class MovieProvider extends Component {
+class MovieContextProvider extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -281,7 +281,7 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
 
   //this will get the id of clicked element and set the id state with id it got from the element
   //https://stackoverflow.com/questions/44325272/getting-the-id-of-a-clicked-element-from-rendered-list
-  handleClick = (id) => {
+  handleClick = id => {
     this.setState(
       {
         id: id
@@ -358,17 +358,17 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
     });
   };
 
-  addFavorite = poster_path => {
+  addFavorite = movie => {
     const { favorite } = this.state;
     let copyFavorites = [...favorite];
     //if it doesnt include, add
-    if (!favorite.includes(poster_path)) {
-      copyFavorites.push(poster_path);
+    if (!favorite.includes(movie)) {
+      copyFavorites.push(movie);
       this.setState({ favorite: copyFavorites });
       //if it includes, remove
       //https://stackoverflow.com/questions/5767325/how-do-i-remove-a-particular-element-from-an-array-in-javascript
     } else {
-      copyFavorites = copyFavorites.filter(movie => movie !== poster_path);
+      copyFavorites = copyFavorites.filter(eachMovie => eachMovie !== movie);
       this.setState({ favorite: copyFavorites });
     }
   };
@@ -400,10 +400,10 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
         }}
       >
         {this.props.children}
-        <Persist 
-          name="movies" 
-          data={this.state} 
-          debounce={500} 
+        <Persist
+          name="movies"
+          data={this.state}
+          debounce={500}
           onMount={data => this.setState(data)}
         />
       </MovieContext.Provider>
@@ -411,7 +411,4 @@ https://api.themoviedb.org/3/movie/top_rated?api_key=${TMDB_KEY}&language=en-US&
   }
 }
 
-//Variable for state consumers
-const MovieConsumer = MovieContext.Consumer;
-
-export { MovieProvider, MovieConsumer };
+export default MovieContextProvider;

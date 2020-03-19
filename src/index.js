@@ -2,23 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.scss";
 import App from "./App";
-import { MovieProvider } from "./Context.jsx";
-import ScrollToTop from "./Components/ScrollToTop.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 import { BrowserRouter as Router } from "react-router-dom";
 import * as serviceWorker from "./serviceWorker";
-
 
 //scrollto top to scroll to top
 //https://stackoverflow.com/questions/36904185/react-router-scroll-to-top-on-every-transition
 //https://reacttraining.com/react-router/web/guides/scroll-restoration/scroll-to-top
 ReactDOM.render(
-  <MovieProvider>
-    <Router>
-      <ScrollToTop>
-        <App />
-      </ScrollToTop>
-    </Router>
-  </MovieProvider>,
+  <Router>
+    <ScrollToTop>
+      <App />
+    </ScrollToTop>
+  </Router>,
   document.getElementById("root")
 );
 

@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { MovieConsumer } from "../../Context";
+import { MovieContext} from "../../Context";
 import Swiper from "react-id-swiper";
 import { Link } from "react-router-dom";
 import LazyLoad from "react-lazyload";
@@ -20,45 +20,36 @@ const params = {
     el: ".swiper-pagination",
     clickable: true
   }
-  // navigation: {
-  //   nextEl: ".swiper-button-next",
-  //   prevEl: ".swiper-button-prev"
-  // }
 };
 
 const Hero = () => {
+  const { trending, handleClick, refreshPage } = useContext(MovieContext);
   return (
     <div className=" Hero">
-      <MovieConsumer>
-        {value => {
+      <Swiper {...params}>
+        {trending.map(movie => {
           return (
-            <Swiper {...params}>
-              {value.trending.map(movie => {
-                return (
-                  <Link
-                    to={`${movie.id}`}
-                    key={movie.id}
-                    onClick={() => {
-                      value.handleClick(movie.id);
-                      value.refreshPage();
-                    }}
-                  >
-                    <LazyLoad>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
-                        alt={movie.title}
-                        // style={{ height: "80vh", width:"100%" }}
-                      />
-                    </LazyLoad>
+            <Link
+              to={`${movie.id}`}
+              key={movie.id}
+              onClick={() => {
+                handleClick(movie.id);
+                refreshPage();
+              }}
+            >
+              <LazyLoad>
+                <img
+                  src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+                  alt={movie.title}
+                  // style={{ height: "80vh", width:"100%" }}
+                />
+              </LazyLoad>
 
-                    <h1 className="carousel-caption">{movie.title}</h1>
-                  </Link>
-                );
-              })}
-            </Swiper>
+              <h1 className="carousel-caption">{movie.title}</h1>
+            </Link>
           );
-        }}
-      </MovieConsumer>
+        })}
+      </Swiper>
     </div>
   );
 };

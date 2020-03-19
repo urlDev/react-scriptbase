@@ -1,35 +1,35 @@
-import React, { Component } from "react";
-import NavTop from "./Components/Nav/NavTop.jsx";
-import Home from "./Components/Home/Home.jsx";
-import MovieDetails from "./Components/MovieDetails/MovieDetails.jsx";
-import Footer from "./Components/Footer/Footer.jsx"
-import Modal from "./Components/Modal/Modal.jsx"
-import SignIn from "./Components/SignIn/SignIn.jsx"
-import User from "./Components/User/User.jsx"
+import React from "react";
+
+import NavTop from "./components/nav/NavTop.jsx";
+import Home from "./components/home/Home.jsx";
+import MovieDetails from "./components/movieDetails/MovieDetails.jsx";
+import Footer from "./components/footer/Footer.jsx";
+import Modal from "./components/modal/Modal.jsx";
+import SignIn from "./components/signIn/SignIn.jsx";
+import User from "./components/user/User.jsx";
+
+import MovieContextProvider from "./Context.jsx";
 
 import { Switch, Route } from "react-router-dom";
 
 import "./App.scss";
 
-class App extends Component {
-
-  render() {
-    return (
-      <div className="App">
-      <NavTop />
-      <Switch>
-        <Route path="/signin" component={SignIn}/>
-        <Route exact path="/" component={Home} />
-        <Route path="/user" component={User}/>
-        <Route path="/:id" component={MovieDetails} />
-      </Switch> 
-      <Modal/>
-      <Footer/>
+const App = () => {
+  return (
+    <div className="App">
+      <MovieContextProvider>
+        <NavTop />
+        <Switch>
+          <Route path="/signin" component={SignIn} />
+          <Route exact path="/" component={Home} />
+          <Route path="/user" component={User} />
+          <Route path="/:id" component={MovieDetails} />
+        </Switch>
+        <Modal />
+        <Footer />
+      </MovieContextProvider>
     </div>
-    );
-  }
-}
+  );
+};
 
 export default App;
-
-

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Button, Form } from 'react-bootstrap';
-import { auth, createUserProfileDocument } from '../../Firebase/firebase.utils.js';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.utils.js';
 
 import "./SignUpComponent.scss";
 
