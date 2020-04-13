@@ -12,7 +12,7 @@ const NavTop = () => {
     getPopular,
     refreshPage,
     clearSearch,
-    currentUser
+    currentUser,
   } = useContext(MovieContext);
 
   return (
@@ -61,11 +61,10 @@ const NavTop = () => {
                   <div onClick={() => auth.signOut()} className="signOut">
                     Sign Out
                   </div>
-                  <div>
-                    <Link to="/user">
-                      <i className="fas fa-user-astronaut"></i>
-                    </Link>
-                  </div>
+
+                  <Link to="/user">
+                    <i className="fas fa-user-astronaut"></i>
+                  </Link>
                 </div>
               ) : (
                 <div className="userSign">Sign in</div>
