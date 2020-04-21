@@ -11,9 +11,8 @@ import * as serviceWorker from "./serviceWorker";
 //https://reacttraining.com/react-router/web/guides/scroll-restoration/scroll-to-top
 ReactDOM.render(
   <Router>
-    <ScrollToTop>
-      <App />
-    </ScrollToTop>
+    <ScrollToTop />
+    <App />
   </Router>,
   document.getElementById("root")
 );

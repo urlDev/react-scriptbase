@@ -1,18 +1,13 @@
-import { Component } from 'react';
-import { withRouter } from "react-router-dom";
-
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 //Add this to index.js so everytime a link is clinked, it will take you to top of the opened page.
-class ScrollToTop extends Component {
-  componentDidUpdate(prevProps) {
-    if (this.props.location !== prevProps.location) {
-      window.scrollTo(0, 0)
-    }
-  }
+export default function ScrollToTop() {
+  const { pathname } = useLocation();
 
-  render() {
-    return this.props.children
-  }
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
-
-export default withRouter(ScrollToTop)
