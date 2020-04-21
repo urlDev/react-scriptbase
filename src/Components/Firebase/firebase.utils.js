@@ -44,9 +44,6 @@ export const createUserProfileDocument = async(userAuth, additionalData) => {
     return userRef;
 };
 
-// export const movieInfo = () => {
-//     let ref = firebase.database().ref
-// }
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

@@ -14,7 +14,6 @@ const SignUpComponent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
 
     const { displayName } = input;
 
