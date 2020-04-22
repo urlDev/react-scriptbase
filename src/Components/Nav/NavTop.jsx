@@ -4,7 +4,7 @@ import "./Nav.scss";
 import { Link } from "react-router-dom";
 import Search from "../search/Search";
 import { MovieContext } from "../../Context";
-import { auth } from "../firebase/firebase.utils.js";
+import { auth } from "../firebase/firebase.utils";
 
 const NavTop = () => {
   const {

@@ -1,14 +1,14 @@
 import React from "react";
 
-import NavTop from "./components/nav/NavTop.jsx";
-import Home from "./components/home/Home.jsx";
-import MovieDetails from "./components/movieDetails/MovieDetails.jsx";
-import Footer from "./components/footer/Footer.jsx";
-import Modal from "./components/modal/Modal.jsx";
-import SignIn from "./components/signIn/SignIn.jsx";
-import User from "./components/user/User.jsx";
+import NavTop from "./components/nav/NavTop";
+import Home from "./components/home/Home";
+import MovieDetails from "./components/movieDetails/MovieDetails";
+import Footer from "./components/footer/Footer";
+import Modal from "./components/modal/Modal";
+import SignIn from "./components/signIn/SignIn";
+import User from "./components/user/User";
 
-import MovieContextProvider from "./Context.jsx";
+import MovieContextProvider from "./Context";
 
 import { Switch, Route } from "react-router-dom";
 
